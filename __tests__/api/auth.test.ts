@@ -1,38 +1,59 @@
+/** @jest-environment node */
 /**
  * API Route Integration Tests — Auth
- * Tests the full request/response cycle for auth endpoints
+ * Runs in Node env so native Request/Response globals are available for NextRequest.
  */
+
+// Must mock prisma BEFORE any route imports so DB calls don't run
+jest.mock('@/lib/prisma', () => ({
+  prisma: {
+    user: {
+      findUnique: jest.fn().mockResolvedValue(null),
+      create: jest.fn().mockResolvedValue({ id: '1', email: 'test@test.com', name: 'Test', role: 'USER' }),
+    },
+    auditLog: { create: jest.fn() },
+  },
+}));
+
+jest.mock('@/lib/email', () => ({
+  sendEmail: jest.fn().mockResolvedValue(true),
+  sendWelcomeEmail: jest.fn().mockResolvedValue(true),
+}));
+
+jest.mock('@/lib/telegram', () => ({
+  sendTelegramMessage: jest.fn().mockResolvedValue(true),
+}));
 
 import { NextRequest } from 'next/server';
 
 // --- Helpers ---
-function makeRequest(body: unknown, method = 'POST', headers: Record<string, string> = {}) {
-  return new NextRequest('http://localhost:3000/api/auth/login', {
+function makeRequest(url: string, body: unknown, method = 'POST') {
+  return new NextRequest(url, {
     method,
-    headers: { 'Content-Type': 'application/json', ...headers },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body),
   });
 }
 
 // --- Register API Tests ---
 describe('POST /api/auth/register', () => {
-  it('validates required fields', async () => {
+  it('validates required fields — returns 400', async () => {
     const { POST } = await import('@/app/api/auth/register/route');
-    const req = makeRequest({ email: '', password: '' });
+    const req = makeRequest('http://localhost:3000/api/auth/register', { email: '', password: '' });
     const res = await POST(req);
     expect(res.status).toBe(400);
   });
 
-  it('validates email format', async () => {
+  it('validates email format — returns 400', async () => {
     const { POST } = await import('@/app/api/auth/register/route');
-    const req = makeRequest({ name: 'Test', email: 'not-an-email', password: 'password123' });
+    const req = makeRequest('http://localhost:3000/api/auth/register', { name: 'Test', email: 'not-an-email', password: 'password123' });
     const res = await POST(req);
     expect(res.status).toBe(400);
   });
 
-  it('validates password minimum length', async () => {
+  it('validates password minimum length — returns 400', async () => {
     const { POST } = await import('@/app/api/auth/register/route');
-    const req = makeRequest({ name: 'Test', email: 'test@example.com', password: '123' });
+    const req = makeRequest('http://localhost:3000/api/auth/register', { name: 'Test', email: 'test@example.com', password: '123' });
     const res = await POST(req);
     expect(res.status).toBe(400);
   });
@@ -40,27 +61,23 @@ describe('POST /api/auth/register', () => {
 
 // --- Login API Tests ---
 describe('POST /api/auth/login', () => {
-  it('returns 400 when body is missing', async () => {
+  it('returns 400 or 401 when credentials missing', async () => {
     const { POST } = await import('@/app/api/auth/login/route');
-    const req = new NextRequest('http://localhost:3000/api/auth/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({}),
-    });
+    const req = makeRequest('http://localhost:3000/api/auth/login', {});
     const res = await POST(req);
     expect(res.status).toBeGreaterThanOrEqual(400);
   });
 
   it('returns 400 for invalid email format', async () => {
     const { POST } = await import('@/app/api/auth/login/route');
-    const req = makeRequest({ email: 'invalid', password: 'test123' });
+    const req = makeRequest('http://localhost:3000/api/auth/login', { email: 'invalid', password: 'test123' });
     const res = await POST(req);
     expect(res.status).toBeGreaterThanOrEqual(400);
   });
 
-  it('returns proper JSON response', async () => {
+  it('returns proper JSON with error property for wrong credentials', async () => {
     const { POST } = await import('@/app/api/auth/login/route');
-    const req = makeRequest({ email: 'notfound@test.com', password: 'wrongpass' });
+    const req = makeRequest('http://localhost:3000/api/auth/login', { email: 'notfound@test.com', password: 'wrongpass' });
     const res = await POST(req);
     const body = await res.json();
     expect(body).toHaveProperty('error');
@@ -83,13 +100,9 @@ describe('GET /api/health', () => {
 
 // --- Contact API Test ---
 describe('POST /api/contact', () => {
-  it('validates required fields', async () => {
+  it('validates required fields — returns 400', async () => {
     const { POST } = await import('@/app/api/contact/route');
-    const req = new NextRequest('http://localhost:3000/api/contact', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: '', email: '', message: '' }),
-    });
+    const req = makeRequest('http://localhost:3000/api/contact', { name: '', email: '', message: '' });
     const res = await POST(req);
     expect(res.status).toBeGreaterThanOrEqual(400);
   });

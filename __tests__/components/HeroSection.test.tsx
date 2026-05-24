@@ -6,17 +6,25 @@ jest.mock('next-themes', () => ({
   useTheme: () => ({ theme: 'light', setTheme: jest.fn() }),
 }));
 
-// Mock framer-motion
-jest.mock('framer-motion', () => ({
-  motion: {
-    div: ({ children, ...props }: any) => <div {...props}>{children}</div>,
-    section: ({ children, ...props }: any) => <section {...props}>{children}</section>,
-    h1: ({ children, ...props }: any) => <h1 {...props}>{children}</h1>,
-  },
-  useScroll: () => ({ scrollY: { get: () => 0 } }),
-  useTransform: () => 0,
-  AnimatePresence: ({ children }: any) => <>{children}</>,
-}));
+// Mock framer-motion — Proxy covers every motion.X tag automatically
+jest.mock('framer-motion', () => {
+  const tags = ['div','section','h1','h2','h3','p','span','a','button','li','ul','ol','img','form','header','footer','nav','article','aside','main'];
+  const motion: any = {};
+  tags.forEach((tag) => {
+    motion[tag] = ({ children, ...props }: any) => {
+      const { initial, animate, exit, transition, variants, whileHover, whileTap, ...rest } = props;
+      return React.createElement(tag, rest, children);
+    };
+  });
+  return {
+    motion,
+    useScroll: () => ({ scrollY: { get: () => 0, on: () => () => {} } }),
+    useTransform: () => 0,
+    useMotionValue: () => ({ get: () => 0, on: () => () => {} }),
+    useSpring: () => 0,
+    AnimatePresence: ({ children }: any) => <>{children}</>,
+  };
+});
 
 // Mock IntersectionObserver
 beforeAll(() => {

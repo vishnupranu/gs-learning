@@ -69,7 +69,8 @@ describe('Contact Form Logic', () => {
 
   it('sanitizes HTML from inputs', () => {
     const input = '<script>alert("xss")</script>Hello World';
-    const sanitized = input.replace(/<[^>]*>/g, '');
+    // Remove script tags AND their content, then strip remaining tags
+    const sanitized = input.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '').replace(/<[^>]*>/g, '');
     expect(sanitized).toBe('Hello World');
     expect(sanitized).not.toContain('<script>');
   });
