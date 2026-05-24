@@ -4,9 +4,9 @@ import { signJWT } from '@/lib/jwt';
 import { OAuth2Client } from 'google-auth-library';
 
 const client = new OAuth2Client(
-  process.env.GOOGLE_CLIENT_ID,
-  process.env.GOOGLE_CLIENT_SECRET,
-  `${process.env.NEXT_PUBLIC_APP_URL}/api/auth/google/callback`
+  process.env.GOOGLE_CLIENT_ID || 'dummy_client_id',
+  process.env.GOOGLE_CLIENT_SECRET || 'dummy_client_secret',
+  `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/api/auth/google/callback`
 );
 
 // Step 1 — Redirect user to Google consent screen
@@ -55,7 +55,7 @@ export async function POST(req: NextRequest) {
     const user = await prisma.user.upsert({
       where: { email },
       update: {
-        name: name || user?.name,
+        name: name || undefined,
         googleId,
         emailVerified: true,
         avatar: picture,

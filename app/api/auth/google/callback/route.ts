@@ -4,9 +4,9 @@ import { prisma } from '@/lib/prisma';
 import { signJWT } from '@/lib/jwt';
 
 const client = new OAuth2Client(
-  process.env.GOOGLE_CLIENT_ID,
-  process.env.GOOGLE_CLIENT_SECRET,
-  `${process.env.NEXT_PUBLIC_APP_URL}/api/auth/google/callback`
+  process.env.GOOGLE_CLIENT_ID || 'dummy_client_id',
+  process.env.GOOGLE_CLIENT_SECRET || 'dummy_client_secret',
+  `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/api/auth/google/callback`
 );
 
 export async function GET(req: NextRequest) {

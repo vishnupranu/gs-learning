@@ -3,7 +3,7 @@ import Stripe from 'stripe';
 import { prisma } from '@/lib/prisma';
 import { workflows } from '@/lib/workflows';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'sk_test_dummy', {
   apiVersion: '2025-01-27.acacia' as any,
 });
 
