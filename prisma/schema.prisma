@@ -30,6 +30,7 @@ model User {
   posts         BlogPost[]
   auditLogs     AuditLog[]
   notifications Notification[]
+  courses       Course[]
 }
 
 

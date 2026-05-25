@@ -51,13 +51,13 @@ describe('Header Component', () => {
 
   it('displays Guide Soft brand name', () => {
     render(<Header />);
-    expect(screen.getByText(/Guide Soft/i)).toBeInTheDocument();
+    expect(screen.getByText(/GuideSoft/i)).toBeInTheDocument();
   });
 
   it('displays main navigation links', () => {
     render(<Header />);
     expect(screen.getByText('Home')).toBeInTheDocument();
-    expect(screen.getByText('About')).toBeInTheDocument();
+    expect(screen.getByText('Features')).toBeInTheDocument();
     expect(screen.getByText('Pricing')).toBeInTheDocument();
   });
 

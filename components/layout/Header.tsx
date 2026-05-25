@@ -21,12 +21,21 @@ import {
 import BrandLogo from '@/components/ui/BrandLogo';
 
 const servicesMenu = [
-  { name: 'Software Development', href: '/services', icon: '💻' },
-  { name: 'AI / ML Development', href: '/services', icon: '🧠' },
-  { name: 'UX/UI Design', href: '/services', icon: '🎨' },
-  { name: 'LMS Platform', href: '/lms', icon: '🎓' },
-  { name: 'Mobile Apps', href: '/services', icon: '📱' },
-  { name: 'Cloud & DevOps', href: '/services', icon: '☁️' },
+  { name: 'Software Development', href: '/services#software', icon: '💻', desc: 'Web, mobile & enterprise apps' },
+  { name: 'AI / ML Development', href: '/services#ai', icon: '🧠', desc: 'Intelligent automation & chatbots' },
+  { name: 'UX/UI Design', href: '/services#design', icon: '🎨', desc: 'User research & design systems' },
+  { name: 'LMS Platform', href: '/lms', icon: '🎓', desc: 'E-learning & certification' },
+  { name: 'Mobile Apps', href: '/services#mobile', icon: '📱', desc: 'iOS, Android & React Native' },
+  { name: 'Cloud & DevOps', href: '/services#cloud', icon: '☁️', desc: 'AWS, Azure, GCP & CI/CD' },
+];
+
+const companyMenu = [
+  { name: 'About Us', href: '/about', icon: '🏢' },
+  { name: 'Case Studies', href: '/case-studies', icon: '📊' },
+  { name: 'Portfolio', href: '/portfolio', icon: '🖥️' },
+  { name: 'Testimonials', href: '/testimonials', icon: '⭐' },
+  { name: 'Blog', href: '/blog', icon: '✍️' },
+  { name: 'Partner Program', href: '/partner', icon: '🤝' },
 ];
 
 const Header = () => {
@@ -43,13 +52,13 @@ const Header = () => {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  const [companyOpen, setCompanyOpen] = useState(false);
+
   const navItems = [
     { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
     { name: 'Features', href: '/features' },
     { name: 'AI Tools', href: '/ai-tools' },
     { name: 'Pricing', href: '/pricing' },
-    { name: 'Blog', href: '/blog' },
     { name: 'Contact', href: '/contact' },
   ];
 
@@ -121,15 +130,52 @@ const Header = () => {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 8 }}
                       transition={{ duration: 0.15 }}
-                      className="absolute top-full left-0 mt-1 w-64 bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-800 overflow-hidden p-2"
+                      className="absolute top-full left-0 mt-1 w-72 bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-800 overflow-hidden p-2"
                     >
                       {servicesMenu.map((s) => (
                         <Link
                           key={s.name}
                           href={s.href}
+                          className="flex items-start gap-3 px-3 py-2.5 rounded-xl hover:bg-green-50 dark:hover:bg-green-900/20 text-gray-700 dark:text-gray-300 hover:text-green-600 transition-colors group"
+                        >
+                          <span className="text-lg group-hover:scale-110 transition-transform mt-0.5">{s.icon}</span>
+                          <div>
+                            <div className="text-sm font-semibold">{s.name}</div>
+                            <div className="text-xs text-gray-500 dark:text-gray-400">{s.desc}</div>
+                          </div>
+                        </Link>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* Company Dropdown */}
+              <div
+                className="relative"
+                onMouseEnter={() => setCompanyOpen(true)}
+                onMouseLeave={() => setCompanyOpen(false)}
+              >
+                <button className="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-green-600 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all flex items-center gap-1">
+                  Company
+                  <ChevronDown size={14} className={`transition-transform duration-200 ${companyOpen ? 'rotate-180' : ''}`} />
+                </button>
+                <AnimatePresence>
+                  {companyOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 8 }}
+                      transition={{ duration: 0.15 }}
+                      className="absolute top-full left-0 mt-1 w-56 bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-800 overflow-hidden p-2"
+                    >
+                      {companyMenu.map((s) => (
+                        <Link
+                          key={s.name}
+                          href={s.href}
                           className="flex items-center gap-3 px-3 py-2.5 text-sm rounded-xl hover:bg-green-50 dark:hover:bg-green-900/20 text-gray-700 dark:text-gray-300 hover:text-green-600 transition-colors group"
                         >
-                          <span className="text-lg group-hover:scale-110 transition-transform">{s.icon}</span>
+                          <span className="text-base group-hover:scale-110 transition-transform">{s.icon}</span>
                           {s.name}
                         </Link>
                       ))}

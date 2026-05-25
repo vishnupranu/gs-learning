@@ -104,6 +104,7 @@ const BookingPage = () => {
           date: selectedDate,
           time: selectedTime,
           notes: formData.message,
+          phone: formData.phone,
         }),
       });
 
@@ -421,7 +422,7 @@ const BookingPage = () => {
                         <Phone size={16} className="mr-3 text-green-600" />
                         <div>
                           <p className="font-medium">Call Us</p>
-                          <p className="text-sm text-gray-600">+91 9876543210</p>
+                          <p className="text-sm text-gray-600">+91 8884162999</p>
                         </div>
                       </div>
                       
@@ -429,7 +430,7 @@ const BookingPage = () => {
                         <Mail size={16} className="mr-3 text-green-600" />
                         <div>
                           <p className="font-medium">Email Us</p>
-                          <p className="text-sm text-gray-600">info@guidesoftitsolutions.com</p>
+                          <p className="text-sm text-gray-600">info@guideitsol.com</p>
                         </div>
                       </div>
                       

@@ -39,6 +39,14 @@ export async function POST(req: NextRequest) {
       }
     });
 
+    // Trigger onboarding workflow (welcome email, Telegram alert, audit log)
+    try {
+      const { workflows } = await import('@/lib/workflows');
+      workflows.handleUserSignup(user.id).catch(console.error);
+    } catch (e) {
+      console.error('Failed to trigger user signup workflow:', e);
+    }
+
     // Generate JWT token for auto-login
     const token = await signJWT({
       userId: user.id,

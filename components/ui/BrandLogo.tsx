@@ -62,29 +62,29 @@ export default function BrandLogo({
           {variant === 'header' && (
             <>
               <span className="text-base font-black text-gray-900 dark:text-white tracking-tight">
-                Guide Soft
+                GuideSoft
               </span>
-              <span className="text-[10px] font-bold text-green-600 dark:text-green-400 tracking-widest uppercase">
-                IT Solutions
+              <span className="text-[9px] font-bold text-green-600 dark:text-green-400 tracking-wider uppercase">
+                IT & AI Solutions
               </span>
             </>
           )}
           {variant === 'footer' && (
             <>
-              <span className="text-xl font-black text-white tracking-tight">Guide Soft</span>
-              <span className="text-xs font-semibold text-green-400 tracking-wider">IT Solutions</span>
+              <span className="text-xl font-black text-white tracking-tight">GuideSoft</span>
+              <span className="text-xs font-semibold text-green-400 tracking-wider">IT & AI Solutions</span>
             </>
           )}
           {variant === 'admin' && (
             <>
-              <span className="text-sm font-black text-gray-900 dark:text-white tracking-tight">Guide Soft</span>
-              <span className="text-[9px] font-bold text-green-500 tracking-wider uppercase">Admin Panel</span>
+              <span className="text-sm font-black text-gray-900 dark:text-white tracking-tight">GuideSoft</span>
+              <span className="text-[9px] font-bold text-green-500 tracking-wider uppercase">IT & AI Admin</span>
             </>
           )}
           {variant === 'auth' && (
             <>
-              <span className="text-2xl font-black text-gray-900 dark:text-white tracking-tight">Guide Soft</span>
-              <span className="text-xs font-bold text-green-600 dark:text-green-400 tracking-widest uppercase">IT Solutions</span>
+              <span className="text-2xl font-black text-gray-900 dark:text-white tracking-tight">GuideSoft</span>
+              <span className="text-xs font-bold text-green-600 dark:text-green-400 tracking-wider uppercase">IT & AI Solutions</span>
             </>
           )}
         </span>
