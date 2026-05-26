@@ -69,7 +69,7 @@ export default function RegisterPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+    <div className="min-h-screen gradient-grid-bg">
       <Header />
 
       <div className="pt-20 pb-16">
@@ -81,14 +81,14 @@ export default function RegisterPage() {
             transition={{ duration: 0.7 }}
             className="hidden lg:block"
           >
-            <div className="inline-flex items-center gap-2 bg-green-500/20 text-green-400 text-sm font-semibold px-4 py-2 rounded-full mb-6">
+            <div className="inline-flex items-center gap-2 bg-green-500/10 dark:bg-green-500/20 border border-green-200 dark:border-green-800 text-green-700 dark:text-green-400 text-sm font-semibold px-4 py-2 rounded-full mb-6">
               🚀 Join 500+ Businesses on Guide Soft
             </div>
-            <h1 className="text-4xl font-bold text-white mb-4">
+            <h1 className="text-2xl font-black text-gray-900 dark:text-white mb-4">
               Start Your Digital
               <span className="gradient-text block">Transformation</span>
             </h1>
-            <p className="text-gray-400 mb-8 leading-relaxed">
+            <p className="text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">
               Create your free account and get access to our full suite of IT services, 
               booking management, and AI-powered tools.
             </p>
@@ -102,25 +102,25 @@ export default function RegisterPage() {
                   transition={{ delay: 0.2 + i * 0.1 }}
                   className="flex items-center gap-3"
                 >
-                  <div className="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center flex-shrink-0">
-                    <CheckCircle size={14} className="text-green-400" />
+                  <div className="w-6 h-6 rounded-full bg-green-500/10 dark:bg-green-500/20 flex items-center justify-center flex-shrink-0">
+                    <CheckCircle size={14} className="text-green-600 dark:text-green-400" />
                   </div>
-                  <span className="text-gray-300 text-sm">{benefit}</span>
+                  <span className="text-gray-700 dark:text-gray-300 text-sm">{benefit}</span>
                 </motion.div>
               ))}
             </div>
 
-            <div className="mt-10 p-6 bg-white/5 rounded-2xl border border-white/10">
+            <div className="mt-10 p-6 bg-gray-50 dark:bg-white/5 rounded-2xl border border-gray-200 dark:border-white/10">
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-10 h-10 rounded-full bg-gradient-to-r from-green-400 to-green-600 flex items-center justify-center text-white font-bold text-sm">
                   PK
                 </div>
                 <div>
-                  <div className="text-white text-sm font-semibold">Praveenkumar K.</div>
-                  <div className="text-gray-400 text-xs">Founder & CEO</div>
+                  <div className="text-gray-900 dark:text-white text-sm font-semibold">Praveenkumar K.</div>
+                  <div className="text-gray-500 dark:text-gray-400 text-xs">Founder & CEO</div>
                 </div>
               </div>
-              <p className="text-gray-300 text-sm italic leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-300 text-sm italic leading-relaxed">
                 "We deliver enterprise-grade solutions that actually work. Every feature is real, 
                 every integration is live, and every client gets measurable results."
               </p>
@@ -133,7 +133,7 @@ export default function RegisterPage() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7 }}
           >
-            <div className="bg-white dark:bg-gray-900 rounded-3xl p-8 shadow-2xl">
+            <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800/80 rounded-3xl p-8 shadow-2xl">
               <div className="mb-6">
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Create your account</h2>
                 <p className="text-gray-500 text-sm mt-1">

@@ -7,15 +7,15 @@
 
 /* ── Design Tokens ────────────────────────────────────────────────────── */
 :root {
-  --primary: #00C853;
-  --primary-dark: #00a846;
-  --secondary: #FFEB3B;
-  --accent: #7C3AED;
-  --text: #0f172a;
-  --text-muted: #64748b;
-  --background: #f8fafc;
-  --card-bg: #ffffff;
-  --border: #e2e8f0;
+  --brand-primary: #00C853;
+  --brand-primary-dark: #00a846;
+  --brand-secondary: #FFEB3B;
+  --brand-accent: #7C3AED;
+  --brand-text: #0f172a;
+  --brand-text-muted: #64748b;
+  --brand-background: #f8fafc;
+  --brand-card-bg: #ffffff;
+  --brand-border: #e2e8f0;
   --gradient: linear-gradient(135deg, #00C853 0%, #FFEB3B 100%);
   --gradient-dark: linear-gradient(135deg, #004d28 0%, #3d3500 100%);
   --shadow-sm: 0 1px 3px rgba(0,0,0,.08);
@@ -85,6 +85,9 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-family: 'Inter', 'Poppins', sans-serif;
+  }
+  body, header, footer, section, aside, nav, .glass-card, .premium-card, .feature-card, input, select, textarea, button {
+    transition: background-color 300ms ease, border-color 300ms ease, color 300ms ease, box-shadow 300ms ease;
   }
 }
 
@@ -641,15 +644,26 @@ h1 {
     inset 0 1px 0 rgba(255,255,255,0.15);
 }
 
-/* ── Enhanced Gradient Grid Background ───────────────────────────────────── */
-.gradient-grid-bg {
+/* ── Enhanced Gradient Grid Background (Theme Responsive) ───────────────── */
+.gradient-grid-bg,
+.gradient-grid-bg-light,
+.premium-gradient-grid {
   position: relative;
+  background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(0, 200, 83, 0.08) 0%, transparent 70%),
+              #f8fafc;
+}
+
+.dark .gradient-grid-bg,
+.dark .gradient-grid-bg-light,
+.dark .premium-gradient-grid {
   background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(0, 200, 83, 0.15) 0%, transparent 70%),
               radial-gradient(ellipse 60% 40% at 80% 80%, rgba(124, 58, 237, 0.1) 0%, transparent 60%),
               #0a0f1e;
 }
 
-.gradient-grid-bg::before {
+.gradient-grid-bg::before,
+.gradient-grid-bg-light::before,
+.premium-gradient-grid::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -660,30 +674,12 @@ h1 {
   mask-image: radial-gradient(ellipse 100% 100% at 50% 0%, black 30%, transparent 80%);
   -webkit-mask-image: radial-gradient(ellipse 100% 100% at 50% 0%, black 30%, transparent 80%);
   animation: grid-pulse 4s ease-in-out infinite;
+  pointer-events: none;
 }
 
 @keyframes grid-pulse {
   0%, 100% { opacity: 0.6; }
   50% { opacity: 1; }
-}
-
-/* Light mode gradient grid */
-.gradient-grid-bg-light {
-  position: relative;
-  background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(0, 200, 83, 0.08) 0%, transparent 70%),
-              #f8fafc;
-}
-
-.gradient-grid-bg-light::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(0, 200, 83, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 200, 83, 0.08) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(ellipse 100% 80% at 50% 0%, black 40%, transparent 90%);
-  -webkit-mask-image: radial-gradient(ellipse 100% 80% at 50% 0%, black 40%, transparent 90%);
 }
 
 /* ── Auth Page Styles ─────────────────────────────────────────────────────── */

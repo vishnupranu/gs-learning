@@ -43,10 +43,12 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const { user, logout } = useAuth();
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme, resolvedTheme } = useTheme();
   const pathname = usePathname();
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const onScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
@@ -76,10 +78,10 @@ const Header = () => {
 
       {/* Main Header */}
       <motion.header
-        className={`sticky top-0 z-50 transition-all duration-500 ${
+        className={`sticky top-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? 'bg-white/95 dark:bg-gray-950/95 backdrop-blur-xl shadow-lg border-b border-gray-100 dark:border-gray-800'
-            : 'bg-white dark:bg-gray-950'
+            ? 'bg-white/80 dark:bg-gray-950/80 backdrop-blur-md shadow-lg border-b border-gray-100 dark:border-gray-800/50'
+            : 'bg-white/50 dark:bg-gray-950/50 backdrop-blur-sm'
         }`}
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -130,7 +132,7 @@ const Header = () => {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 8 }}
                       transition={{ duration: 0.15 }}
-                      className="absolute top-full left-0 mt-1 w-72 bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-800 overflow-hidden p-2"
+                      className="absolute top-full left-0 mt-1 w-72 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-800/50 overflow-hidden p-2"
                     >
                       {servicesMenu.map((s) => (
                         <Link
@@ -167,7 +169,7 @@ const Header = () => {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 8 }}
                       transition={{ duration: 0.15 }}
-                      className="absolute top-full left-0 mt-1 w-56 bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-800 overflow-hidden p-2"
+                      className="absolute top-full left-0 mt-1 w-56 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-800/50 overflow-hidden p-2"
                     >
                       {companyMenu.map((s) => (
                         <Link
@@ -189,11 +191,11 @@ const Header = () => {
             <div className="hidden lg:flex items-center gap-3">
               {/* Theme Toggle */}
               <button
-                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
                 className="w-9 h-9 rounded-xl flex items-center justify-center text-gray-500 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
                 title="Toggle theme"
               >
-                {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+                {mounted && resolvedTheme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
               </button>
 
               {/* WhatsApp */}
@@ -269,10 +271,10 @@ const Header = () => {
             {/* Mobile Controls */}
             <div className="lg:hidden flex items-center gap-2">
               <button
-                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
                 className="w-9 h-9 rounded-xl flex items-center justify-center text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800"
               >
-                {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+                {mounted && resolvedTheme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
               </button>
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -292,7 +294,7 @@ const Header = () => {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.2 }}
-              className="lg:hidden border-t border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-950 overflow-hidden"
+              className="lg:hidden border-t border-gray-100 dark:border-gray-800 bg-white/90 dark:bg-gray-950/90 backdrop-blur-md overflow-hidden"
             >
               <div className="px-4 py-6 space-y-1">
                 {navItems.map((item) => (

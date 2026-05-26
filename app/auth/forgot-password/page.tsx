@@ -64,7 +64,7 @@ export default function ForgotPasswordPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
+    <div className="min-h-screen gradient-grid-bg">
       <Header />
 
       <div className="pt-20 pb-16 flex items-center justify-center min-h-[calc(100vh-80px)]">
@@ -73,7 +73,7 @@ export default function ForgotPasswordPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="bg-white rounded-3xl shadow-xl p-8 border border-gray-100"
+            className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-3xl shadow-xl p-8"
           >
             {step === 'email' && (
               <>
@@ -81,15 +81,15 @@ export default function ForgotPasswordPage() {
                   <div className="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center mx-auto mb-4">
                     <Mail size={28} className="text-white" />
                   </div>
-                  <h1 className="text-2xl font-bold text-gray-900">Forgot your password?</h1>
-                  <p className="text-gray-500 text-sm mt-2">
+                  <h1 className="text-2xl font-black text-gray-900 dark:text-white">Forgot your password?</h1>
+                  <p className="text-gray-500 dark:text-gray-400 text-sm mt-2">
                     No worries! Enter your email and we will send you a reset link.
                   </p>
                 </div>
 
                 <form onSubmit={handleSendReset} className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                       Email Address
                     </label>
                     <div className="relative">
@@ -97,7 +97,7 @@ export default function ForgotPasswordPage() {
                       <Input
                         type="email"
                         placeholder="your@email.com"
-                        className="pl-10"
+                        className="pl-10 bg-gray-50 dark:bg-gray-950 border-gray-200 dark:border-gray-850"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
@@ -135,18 +135,18 @@ export default function ForgotPasswordPage() {
 
             {step === 'sent' && (
               <div className="text-center">
-                <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-green-100 dark:bg-green-950/30 rounded-2xl flex items-center justify-center mx-auto mb-4">
                   <CheckCircle size={28} className="text-green-600" />
                 </div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">Check your email</h2>
-                <p className="text-gray-500 text-sm mb-6">
+                <h2 className="text-2xl font-black text-gray-900 dark:text-white mb-2">Check your email</h2>
+                <p className="text-gray-500 dark:text-gray-400 text-sm mb-6">
                   We sent a password reset link to{' '}
-                  <span className="font-semibold text-gray-800">{email}</span>
+                  <span className="font-semibold text-gray-800 dark:text-gray-200">{email}</span>
                 </p>
-                <div className="bg-gray-50 rounded-2xl p-4 mb-6 text-left space-y-2">
-                  <p className="text-xs text-gray-500 font-semibold uppercase tracking-wide">Next steps:</p>
+                <div className="bg-gray-50 dark:bg-gray-950 rounded-2xl p-4 mb-6 text-left space-y-2 border border-gray-100 dark:border-gray-800">
+                  <p className="text-xs text-gray-500 dark:text-gray-400 font-semibold uppercase tracking-wide">Next steps:</p>
                   {['Open your email inbox', 'Click the reset link in the email', 'Create your new password', 'Sign in with new credentials'].map((step, i) => (
-                    <div key={i} className="flex items-center gap-2 text-sm text-gray-600">
+                    <div key={i} className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
                       <span className="w-5 h-5 rounded-full gradient-bg text-white text-xs flex items-center justify-center font-bold flex-shrink-0">{i + 1}</span>
                       {step}
                     </div>
@@ -178,7 +178,7 @@ export default function ForgotPasswordPage() {
           </motion.div>
 
           {/* Security note */}
-          <p className="text-center text-xs text-gray-400 mt-4">
+          <p className="text-center text-xs text-gray-500 dark:text-gray-400 mt-4">
             🔒 Reset links expire after 30 minutes for your security.
             <br />
             Need help? <a href="https://wa.me/918884162999" className="text-green-600 hover:underline">Contact support on WhatsApp</a>

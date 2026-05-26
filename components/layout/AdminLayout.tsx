@@ -55,8 +55,13 @@ const navGroups = [
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const { user, logout } = useAuth();
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme, resolvedTheme } = useTheme();
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [mounted, setMounted] = useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const isActive = (href: string) =>
     href === '/admin' ? pathname === '/admin' : pathname.startsWith(href);
@@ -64,9 +69,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950 flex transition-colors duration-300">
       {/* Sidebar */}
-      <aside className={`${sidebarOpen ? 'w-64' : 'w-16'} bg-gray-900 dark:bg-gray-950 border-r border-gray-800 flex flex-col fixed h-full z-30 transition-all duration-300`}>
+      <aside className={`${sidebarOpen ? 'w-64' : 'w-16'} bg-white dark:bg-gray-950 border-r border-gray-100 dark:border-gray-900 flex flex-col fixed h-full z-30 transition-all duration-300`}>
         {/* Sidebar Header — GS Brand Logo */}
-        <div className="p-4 border-b border-gray-800 flex items-center gap-3">
+        <div className="p-4 border-b border-gray-100 dark:border-gray-900 flex items-center gap-3">
           <div className="w-9 h-9 flex-shrink-0">
             <Image
               src="/gslogo.png"
@@ -79,13 +84,13 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           </div>
           {sidebarOpen && (
             <div className="flex-1 min-w-0">
-              <div className="text-white font-black text-sm truncate">Guide Soft</div>
-              <div className="text-green-400 text-xs font-semibold">Admin Panel</div>
+              <div className="text-gray-900 dark:text-white font-black text-sm truncate">Guide Soft</div>
+              <div className="text-green-600 dark:text-green-400 text-xs font-semibold">Admin Panel</div>
             </div>
           )}
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="text-gray-400 hover:text-white transition-colors ml-auto flex-shrink-0"
+            className="text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors ml-auto flex-shrink-0"
           >
             {sidebarOpen ? <X size={14} /> : <Menu size={14} />}
           </button>
@@ -96,7 +101,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           {navGroups.map((group) => (
             <div key={group.label}>
               {sidebarOpen && (
-                <p className="text-gray-600 text-[10px] font-bold uppercase tracking-widest px-2 mb-1.5">
+                <p className="text-gray-400 dark:text-gray-600 text-[10px] font-bold uppercase tracking-widest px-2 mb-1.5">
                   {group.label}
                 </p>
               )}
@@ -110,8 +115,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                       title={!sidebarOpen ? item.label : undefined}
                       className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
                         active
-                          ? 'bg-green-500/20 text-green-400 border border-green-500/20'
-                          : 'text-gray-400 hover:bg-gray-800 hover:text-white'
+                          ? 'bg-green-500/10 text-green-600 dark:text-green-400 border border-green-500/20'
+                          : 'text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-900 hover:text-gray-900 dark:hover:text-white'
                       }`}
                     >
                       <item.icon size={16} className="flex-shrink-0" />
@@ -126,25 +131,25 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </nav>
 
         {/* Bottom: Theme + User + Logout */}
-        <div className="p-3 border-t border-gray-800 space-y-2">
+        <div className="p-3 border-t border-gray-100 dark:border-gray-900 space-y-2">
           {/* Theme toggle */}
           <button
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            className={`flex items-center gap-3 w-full px-3 py-2 text-gray-400 hover:text-white hover:bg-gray-800 rounded-xl text-sm transition-all`}
+            onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
+            className={`flex items-center gap-3 w-full px-3 py-2 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-900 rounded-xl text-sm transition-all`}
           >
-            {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
-            {sidebarOpen && <span>{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>}
+            {mounted && resolvedTheme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
+            {sidebarOpen && <span>{mounted && resolvedTheme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>}
           </button>
 
           {/* User info */}
           {user && sidebarOpen && (
-            <div className="flex items-center gap-3 px-3 py-2 bg-gray-800 rounded-xl">
+            <div className="flex items-center gap-3 px-3 py-2 bg-gray-100 dark:bg-gray-900 rounded-xl">
               <div className="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center text-white text-xs font-black flex-shrink-0">
                 {user.name?.[0]?.toUpperCase()}
               </div>
               <div className="flex-1 min-w-0">
-                <div className="text-white text-xs font-semibold truncate">{user.name}</div>
-                <div className="text-gray-400 text-[10px]">{(user as any).role || 'Admin'}</div>
+                <div className="text-gray-900 dark:text-white text-xs font-semibold truncate">{user.name}</div>
+                <div className="text-gray-500 dark:text-gray-400 text-[10px]">{(user as any).role || 'Admin'}</div>
               </div>
             </div>
           )}
@@ -152,7 +157,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           {/* Logout */}
           <button
             onClick={logout}
-            className="flex items-center gap-3 w-full px-3 py-2 text-gray-400 hover:text-red-400 hover:bg-red-400/10 rounded-xl text-sm transition-all"
+            className="flex items-center gap-3 w-full px-3 py-2 text-gray-500 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/20 rounded-xl text-sm transition-all"
           >
             <LogOut size={14} className="flex-shrink-0" />
             {sidebarOpen && 'Sign Out'}

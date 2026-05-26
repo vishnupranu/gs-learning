@@ -143,7 +143,7 @@ const BookingPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen gradient-grid-bg">
       <Header />
       
       <div className="pt-20 pb-16">
@@ -155,10 +155,10 @@ const BookingPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">
+            <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
               Book Your <span className="gradient-text">Consultation</span>
             </h1>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
               Schedule a meeting with our experts to discuss your project requirements 
               and explore how we can help transform your business.
             </p>
@@ -172,10 +172,10 @@ const BookingPage = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                <Card className="border-0 shadow-lg">
+                <Card className="bg-white/80 dark:bg-gray-900/80 border border-gray-100 dark:border-gray-800 shadow-lg">
                   <CardHeader>
-                    <CardTitle className="flex items-center">
-                      <Calendar className="mr-2" size={24} />
+                    <CardTitle className="flex items-center text-gray-900 dark:text-white">
+                      <Calendar className="mr-2 text-green-500" size={24} />
                       Schedule Your Appointment
                     </CardTitle>
                   </CardHeader>
@@ -183,7 +183,7 @@ const BookingPage = () => {
                     <form onSubmit={handleSubmit} className="space-y-6">
                       {/* Service Selection */}
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-3">
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
                           Select Service
                         </label>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -192,20 +192,20 @@ const BookingPage = () => {
                               key={service.id}
                               className={`p-4 border-2 rounded-lg cursor-pointer transition-all duration-200 ${
                                 selectedService === service.id
-                                  ? 'border-green-500 bg-green-50'
-                                  : 'border-gray-200 hover:border-gray-300'
+                                  ? 'border-green-500 bg-green-50 dark:bg-green-950/20 text-green-700 dark:text-green-400'
+                                  : 'border-gray-200 dark:border-gray-850 hover:border-gray-300 dark:hover:border-gray-700'
                               }`}
                               onClick={() => setSelectedService(service.id)}
                             >
                               <div className="flex justify-between items-start mb-2">
-                                <h3 className="font-semibold text-gray-900">{service.name}</h3>
+                                <h3 className="font-semibold text-gray-900 dark:text-white">{service.name}</h3>
                                 <Badge variant={service.price === 'Free' ? 'default' : 'secondary'}>
                                   {service.price}
                                 </Badge>
                               </div>
-                              <p className="text-sm text-gray-600 mb-2">{service.description}</p>
-                              <div className="flex items-center text-sm text-gray-500">
-                                <Clock size={14} className="mr-1" />
+                              <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">{service.description}</p>
+                              <div className="flex items-center text-sm text-gray-500 dark:text-gray-450">
+                                <Clock size={14} className="mr-1 text-green-500" />
                                 {service.duration}
                               </div>
                             </div>
@@ -215,7 +215,7 @@ const BookingPage = () => {
 
                       {/* Date Selection */}
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-3">
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
                           Select Date
                         </label>
                         <div className="grid grid-cols-3 md:grid-cols-5 gap-2 max-h-40 overflow-y-auto">
@@ -225,8 +225,8 @@ const BookingPage = () => {
                               type="button"
                               className={`p-2 text-sm border rounded-lg transition-all duration-200 ${
                                 selectedDate === date
-                                  ? 'border-green-500 bg-green-50 text-green-700'
-                                  : 'border-gray-200 hover:border-gray-300'
+                                  ? 'border-green-500 bg-green-50 dark:bg-green-950/20 text-green-700 dark:text-green-400 font-bold'
+                                  : 'border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-700 bg-gray-50 dark:bg-gray-950'
                               }`}
                               onClick={() => setSelectedDate(date)}
                             >
@@ -241,7 +241,7 @@ const BookingPage = () => {
 
                       {/* Time Selection */}
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-3">
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
                           Select Time
                         </label>
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
@@ -251,8 +251,8 @@ const BookingPage = () => {
                               type="button"
                               className={`p-2 text-sm border rounded-lg transition-all duration-200 ${
                                 selectedTime === time
-                                  ? 'border-green-500 bg-green-50 text-green-700'
-                                  : 'border-gray-200 hover:border-gray-300'
+                                  ? 'border-green-500 bg-green-50 dark:bg-green-950/20 text-green-700 dark:text-green-400 font-bold'
+                                  : 'border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-700 bg-gray-50 dark:bg-gray-950'
                               }`}
                               onClick={() => setSelectedTime(time)}
                             >
@@ -265,7 +265,7 @@ const BookingPage = () => {
                       {/* Personal Information */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                             Full Name *
                           </label>
                           <div className="relative">
@@ -273,7 +273,7 @@ const BookingPage = () => {
                             <Input
                               type="text"
                               placeholder="Enter your full name"
-                              className="pl-10"
+                              className="pl-10 bg-gray-50 dark:bg-gray-950 border-gray-200 dark:border-gray-800"
                               value={formData.name}
                               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                               required
@@ -282,7 +282,7 @@ const BookingPage = () => {
                         </div>
 
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                             Email Address *
                           </label>
                           <div className="relative">
@@ -290,7 +290,7 @@ const BookingPage = () => {
                             <Input
                               type="email"
                               placeholder="Enter your email"
-                              className="pl-10"
+                              className="pl-10 bg-gray-50 dark:bg-gray-950 border-gray-200 dark:border-gray-800"
                               value={formData.email}
                               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                               required
@@ -299,7 +299,7 @@ const BookingPage = () => {
                         </div>
 
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                             Phone Number *
                           </label>
                           <div className="relative">
@@ -307,7 +307,7 @@ const BookingPage = () => {
                             <Input
                               type="tel"
                               placeholder="Enter your phone number"
-                              className="pl-10"
+                              className="pl-10 bg-gray-50 dark:bg-gray-950 border-gray-200 dark:border-gray-800"
                               value={formData.phone}
                               onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                               required
@@ -316,12 +316,13 @@ const BookingPage = () => {
                         </div>
 
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                             Company (Optional)
                           </label>
                           <Input
                             type="text"
                             placeholder="Enter your company name"
+                            className="bg-gray-50 dark:bg-gray-950 border-gray-200 dark:border-gray-800"
                             value={formData.company}
                             onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                           />
@@ -330,14 +331,14 @@ const BookingPage = () => {
 
                       {/* Message */}
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                           Project Details (Optional)
                         </label>
                         <div className="relative">
                           <MessageSquare className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                           <Textarea
                             placeholder="Tell us about your project requirements..."
-                            className="pl-10 min-h-[100px]"
+                            className="pl-10 bg-gray-50 dark:bg-gray-950 border-gray-200 dark:border-gray-800 min-h-[100px]"
                             value={formData.message}
                             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                           />
@@ -347,7 +348,7 @@ const BookingPage = () => {
                       {/* Submit Button */}
                       <Button
                         type="submit"
-                        className="w-full gradient-bg text-white hover:opacity-90 text-lg py-3"
+                        className="w-full gradient-bg text-white hover:opacity-90 text-lg py-3 rounded-2xl shadow-lg shadow-green-500/20"
                         disabled={loading}
                       >
                         {loading ? 'Booking...' : 'Book Appointment'}
@@ -367,38 +368,38 @@ const BookingPage = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
-                <Card className="border-0 shadow-lg">
+                <Card className="bg-white/80 dark:bg-gray-900/80 border border-gray-100 dark:border-gray-800 shadow-lg">
                   <CardHeader>
-                    <CardTitle>Booking Summary</CardTitle>
+                    <CardTitle className="text-gray-900 dark:text-white">Booking Summary</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     {selectedService && (
-                      <div className="p-3 bg-green-50 rounded-lg">
-                        <h4 className="font-semibold text-green-800">
+                      <div className="p-3 bg-green-50 dark:bg-green-950/20 border border-green-100 dark:border-green-900/30 rounded-lg">
+                        <h4 className="font-semibold text-green-800 dark:text-green-400">
                           {services.find(s => s.id === selectedService)?.name}
                         </h4>
-                        <p className="text-sm text-green-600">
+                        <p className="text-sm text-green-600 dark:text-green-300">
                           {services.find(s => s.id === selectedService)?.duration} • {services.find(s => s.id === selectedService)?.price}
                         </p>
                       </div>
                     )}
                     
                     {selectedDate && (
-                      <div className="flex items-center text-sm text-gray-600">
-                        <Calendar size={16} className="mr-2" />
+                      <div className="flex items-center text-sm text-gray-650 dark:text-gray-300">
+                        <Calendar size={16} className="mr-2 text-green-500" />
                         {formatDate(selectedDate)}
                       </div>
                     )}
                     
                     {selectedTime && (
-                      <div className="flex items-center text-sm text-gray-600">
-                        <Clock size={16} className="mr-2" />
+                      <div className="flex items-center text-sm text-gray-650 dark:text-gray-300">
+                        <Clock size={16} className="mr-2 text-green-500" />
                         {selectedTime}
                       </div>
                     )}
                     
                     {!selectedService && !selectedDate && !selectedTime && (
-                      <p className="text-sm text-gray-500">
+                      <p className="text-sm text-gray-500 dark:text-gray-400">
                         Please select service, date, and time to see booking summary.
                       </p>
                     )}
@@ -412,30 +413,30 @@ const BookingPage = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
-                <Card className="border-0 shadow-lg">
+                <Card className="bg-white/80 dark:bg-gray-900/80 border border-gray-100 dark:border-gray-800 shadow-lg">
                   <CardHeader>
-                    <CardTitle>Need Help?</CardTitle>
+                    <CardTitle className="text-gray-900 dark:text-white">Need Help?</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-4">
                       <div className="flex items-center">
                         <Phone size={16} className="mr-3 text-green-600" />
                         <div>
-                          <p className="font-medium">Call Us</p>
-                          <p className="text-sm text-gray-600">+91 8884162999</p>
+                          <p className="font-medium text-gray-900 dark:text-white">Call Us</p>
+                          <p className="text-sm text-gray-600 dark:text-gray-400">+91 8884162999</p>
                         </div>
                       </div>
                       
                       <div className="flex items-center">
                         <Mail size={16} className="mr-3 text-green-600" />
                         <div>
-                          <p className="font-medium">Email Us</p>
-                          <p className="text-sm text-gray-600">info@guideitsol.com</p>
+                          <p className="font-medium text-gray-900 dark:text-white">Email Us</p>
+                          <p className="text-sm text-gray-600 dark:text-gray-400">info@guideitsol.com</p>
                         </div>
                       </div>
                       
-                      <div className="pt-4 border-t">
-                        <p className="text-sm text-gray-600">
+                      <div className="pt-4 border-t border-gray-100 dark:border-gray-800">
+                        <p className="text-sm text-gray-650 dark:text-gray-400">
                           Our team typically responds within 24 hours. For urgent matters, 
                           please call us directly.
                         </p>
@@ -451,12 +452,12 @@ const BookingPage = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
               >
-                <Card className="border-0 shadow-lg bg-gradient-to-br from-green-50 to-yellow-50">
+                <Card className="border border-green-100 dark:border-green-900/30 shadow-lg bg-gradient-to-br from-green-50/50 to-yellow-50/30 dark:from-green-950/20 dark:to-yellow-950/10">
                   <CardHeader>
-                    <CardTitle>What to Expect</CardTitle>
+                    <CardTitle className="text-gray-900 dark:text-white">What to Expect</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <ul className="space-y-3 text-sm">
+                    <ul className="space-y-3 text-sm text-gray-600 dark:text-gray-300">
                       <li className="flex items-start">
                         <CheckCircle size={16} className="mr-2 text-green-500 mt-0.5 flex-shrink-0" />
                         <span>Detailed discussion of your project requirements</span>
