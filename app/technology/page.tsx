@@ -391,31 +391,38 @@ const TechnologyPage = () => {
 
   const getExpertiseColor = (expertise: string) => {
     switch (expertise) {
-      case 'Expert': return 'bg-green-100 text-green-800';
-      case 'Advanced': return 'bg-blue-100 text-blue-800';
-      case 'Intermediate': return 'bg-yellow-100 text-yellow-800';
-      default: return 'bg-gray-100 text-gray-800';
+      case 'Expert': return 'bg-green-100 text-green-800 dark:bg-green-950/40 dark:text-green-400 border border-green-200/20 dark:border-green-900/30';
+      case 'Advanced': return 'bg-blue-100 text-blue-800 dark:bg-blue-950/40 dark:text-blue-400 border border-blue-200/20 dark:border-blue-900/30';
+      case 'Intermediate': return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-950/40 dark:text-yellow-400 border border-yellow-200/20 dark:border-yellow-900/30';
+      default: return 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300 border border-gray-200/20 dark:border-gray-700/30';
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#0a0f1e] text-gray-900 dark:text-white transition-colors duration-300">
       <Header />
       
       <div className="pt-20 pb-16">
         {/* Hero Section */}
-        <section className="py-16 bg-gradient-to-br from-green-500 via-green-600 to-yellow-400">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="relative py-24 gradient-grid-bg overflow-hidden flex items-center">
+          {/* Background decorative elements */}
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-green-500/10 dark:bg-green-500/15 rounded-full blur-3xl pointer-events-none animate-blob" />
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-yellow-500/10 dark:bg-yellow-500/15 rounded-full blur-3xl pointer-events-none animate-blob animation-delay-2000" />
+          
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <motion.div
-              className="text-center text-white"
+              className="text-center"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                Our Technology <span className="block">Stack</span>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 dark:bg-green-500/20 border border-green-500/20 text-green-600 dark:text-green-400 text-sm font-semibold mb-6">
+                <Code size={14} /> Our Tech Stack
+              </div>
+              <h1 className="hero-h1 font-bold mb-6 text-gray-900 dark:text-white">
+                Our Technology <span className="gradient-text">Stack</span>
               </h1>
-              <p className="text-xl md:text-2xl mb-8 text-green-100 max-w-3xl mx-auto">
+              <p className="text-lg md:text-xl mb-8 text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
                 We leverage cutting-edge technologies and frameworks to build robust, 
                 scalable, and future-ready solutions for your business needs.
               </p>
@@ -424,7 +431,7 @@ const TechnologyPage = () => {
         </section>
 
         {/* Stats */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-white dark:bg-gray-900/40 border-y border-gray-100 dark:border-gray-800/60">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               className="grid grid-cols-1 md:grid-cols-4 gap-8"
@@ -438,8 +445,8 @@ const TechnologyPage = () => {
                   <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-green-500 to-yellow-400 rounded-full flex items-center justify-center">
                     <stat.icon className="text-white" size={28} />
                   </div>
-                  <div className="text-3xl font-bold text-gray-900 mb-2">{stat.number}</div>
-                  <div className="text-gray-600">{stat.label}</div>
+                  <div className="text-3xl font-bold text-gray-900 dark:text-white mb-2">{stat.number}</div>
+                  <div className="text-gray-550 dark:text-gray-400 font-medium">{stat.label}</div>
                 </motion.div>
               ))}
             </motion.div>
@@ -447,7 +454,7 @@ const TechnologyPage = () => {
         </section>
 
         {/* Technology Categories */}
-        <section className="py-20 bg-gray-50">
+        <section className="py-20 bg-gray-50/50 dark:bg-gray-950/20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               className="text-center mb-16"
@@ -456,10 +463,10 @@ const TechnologyPage = () => {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
                 Technology <span className="gradient-text">Categories</span>
               </h2>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
                 Explore our expertise across different technology domains and see the tools we use to build exceptional solutions.
               </p>
             </motion.div>
@@ -479,8 +486,8 @@ const TechnologyPage = () => {
                   onClick={() => setActiveCategory(category.id)}
                   className={`px-6 py-3 rounded-full transition-all duration-300 ${
                     activeCategory === category.id 
-                      ? 'gradient-bg text-white border-0' 
-                      : 'hover:border-green-500 hover:text-green-600'
+                      ? 'gradient-bg text-white border-0 shadow-lg shadow-green-500/25' 
+                      : 'bg-white dark:bg-gray-900 hover:border-green-500 hover:text-green-600 dark:hover:text-green-400 dark:text-gray-300 border border-gray-200 dark:border-gray-800'
                   }`}
                 >
                   <category.icon size={18} className="mr-2" />
@@ -500,7 +507,7 @@ const TechnologyPage = () => {
               <div className={`w-16 h-16 mx-auto mb-4 bg-gradient-to-r ${categories.find(c => c.id === activeCategory)?.color} rounded-full flex items-center justify-center`}>
                 {React.createElement(categories.find(c => c.id === activeCategory)?.icon || Code, { className: "text-white", size: 28 })}
               </div>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
                 {categories.find(c => c.id === activeCategory)?.description}
               </p>
             </motion.div>
@@ -515,10 +522,10 @@ const TechnologyPage = () => {
             >
               {technologies[activeCategory as keyof typeof technologies]?.map((tech, index) => (
                 <motion.div key={tech.name} variants={itemVariants}>
-                  <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 group">
+                  <Card className="h-full border border-gray-100 dark:border-gray-800/80 bg-white/70 dark:bg-gray-900/60 glass-card transition-all duration-300 group">
                     <CardContent className="p-6">
                       <div className="flex items-center mb-4">
-                        <div className="w-16 h-16 mr-4 flex items-center justify-center bg-gray-50 rounded-lg group-hover:bg-gray-100 transition-colors">
+                        <div className="w-16 h-16 mr-4 flex items-center justify-center bg-gray-50 dark:bg-gray-800/50 rounded-lg group-hover:bg-gray-100 dark:group-hover:bg-gray-800 transition-colors">
                           <img
                             src={tech.icon}
                             alt={tech.name}
@@ -530,23 +537,23 @@ const TechnologyPage = () => {
                           />
                         </div>
                         <div className="flex-1">
-                          <h3 className="text-xl font-bold text-gray-900 mb-1">{tech.name}</h3>
+                          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">{tech.name}</h3>
                           <Badge className={getExpertiseColor(tech.expertise)}>
                             {tech.expertise}
                           </Badge>
                         </div>
                       </div>
 
-                      <p className="text-gray-600 mb-4 leading-relaxed">{tech.description}</p>
+                      <p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">{tech.description}</p>
 
                       <div className="grid grid-cols-2 gap-4 text-sm">
                         <div>
-                          <span className="font-semibold text-gray-700">Experience:</span>
-                          <p className="text-gray-600">{tech.experience}</p>
+                          <span className="font-semibold text-gray-700 dark:text-gray-300">Experience:</span>
+                          <p className="text-gray-600 dark:text-gray-400">{tech.experience}</p>
                         </div>
                         <div>
-                          <span className="font-semibold text-gray-700">Projects:</span>
-                          <p className="text-gray-600">{tech.projects}</p>
+                          <span className="font-semibold text-gray-700 dark:text-gray-300">Projects:</span>
+                          <p className="text-gray-600 dark:text-gray-400">{tech.projects}</p>
                         </div>
                       </div>
                     </CardContent>
@@ -558,7 +565,7 @@ const TechnologyPage = () => {
         </section>
 
         {/* Technology Stack Overview */}
-        <section className="py-20 bg-white">
+        <section className="py-20 bg-white dark:bg-gray-900/20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               className="text-center mb-16"
@@ -567,10 +574,10 @@ const TechnologyPage = () => {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
                 Complete <span className="gradient-text">Technology Stack</span>
               </h2>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
                 Our comprehensive technology stack enables us to build end-to-end solutions for any business requirement.
               </p>
             </motion.div>
@@ -584,23 +591,23 @@ const TechnologyPage = () => {
             >
               {categories.map((category, index) => (
                 <motion.div key={category.id} variants={itemVariants}>
-                  <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 group cursor-pointer"
+                  <Card className="h-full border border-gray-100 dark:border-gray-800/80 bg-white/70 dark:bg-gray-900/60 glass-card transition-all duration-300 group cursor-pointer"
                         onClick={() => setActiveCategory(category.id)}>
                     <CardHeader>
                       <div className={`w-16 h-16 bg-gradient-to-r ${category.color} rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
                         <category.icon className="text-white" size={28} />
                       </div>
-                      <CardTitle className="text-xl font-bold text-gray-900 group-hover:text-green-600 transition-colors">
+                      <CardTitle className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">
                         {category.name}
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-gray-600 mb-4 leading-relaxed">{category.description}</p>
+                      <p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">{category.description}</p>
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-gray-500">
+                        <span className="text-sm text-gray-500 dark:text-gray-400">
                           {technologies[category.id as keyof typeof technologies]?.length} Technologies
                         </span>
-                        <Button size="sm" variant="outline" className="group-hover:border-green-500 group-hover:text-green-600">
+                        <Button size="sm" variant="outline" className="dark:border-gray-700 dark:text-gray-300 group-hover:border-green-500 dark:group-hover:border-green-500 group-hover:text-green-600 dark:group-hover:text-green-400">
                           Explore
                         </Button>
                       </div>
@@ -613,23 +620,23 @@ const TechnologyPage = () => {
         </section>
 
         {/* CTA */}
-        <section className="py-16 bg-gradient-to-r from-gray-900 to-gray-800">
-          <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+        <section className="py-16 bg-gradient-to-br from-gray-900 via-slate-950 to-black relative overflow-hidden border-t border-gray-800">
+          <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-4xl font-bold text-white mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
                 Need a Custom Technology Solution?
               </h2>
-              <p className="text-xl text-gray-300 mb-8">
+              <p className="text-lg md:text-xl text-gray-350 mb-8 max-w-2xl mx-auto leading-relaxed">
                 Our experts can help you choose the right technology stack for your specific 
                 requirements and ensure optimal performance and scalability.
               </p>
               <motion.button
-                className="gradient-bg text-white px-8 py-4 rounded-lg font-semibold hover:opacity-90 transition-opacity text-lg"
+                className="gradient-bg text-white px-8 py-4 rounded-lg font-semibold hover:opacity-90 transition-opacity text-lg shadow-lg shadow-green-500/25"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >

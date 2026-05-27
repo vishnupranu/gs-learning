@@ -164,23 +164,30 @@ const ProcessPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#0a0f1e] text-gray-900 dark:text-white transition-colors duration-300">
       <Header />
       
       <div className="pt-20 pb-16">
         {/* Hero Section */}
-        <section className="py-16 bg-gradient-to-br from-green-500 via-green-600 to-yellow-400">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="relative py-24 gradient-grid-bg overflow-hidden flex items-center">
+          {/* Background decorative elements */}
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-green-500/10 dark:bg-green-500/15 rounded-full blur-3xl pointer-events-none animate-blob" />
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-yellow-500/10 dark:bg-yellow-500/15 rounded-full blur-3xl pointer-events-none animate-blob animation-delay-2000" />
+          
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
             <motion.div
-              className="text-center text-white"
+              className="text-center"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                Our <span className="block">Process</span>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 dark:bg-green-500/20 border border-green-500/20 text-green-600 dark:text-green-400 text-sm font-semibold mb-6">
+                <Target size={14} /> Development Roadmap
+              </div>
+              <h1 className="hero-h1 font-bold mb-6 text-gray-900 dark:text-white">
+                Our <span className="gradient-text">Process</span>
               </h1>
-              <p className="text-xl md:text-2xl mb-8 text-green-100 max-w-3xl mx-auto">
+              <p className="text-lg md:text-xl mb-8 text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
                 A proven methodology that ensures successful project delivery through 
                 systematic planning, execution, and continuous improvement.
               </p>
@@ -189,7 +196,7 @@ const ProcessPage = () => {
         </section>
 
         {/* Benefits Section */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-white dark:bg-gray-900/20 border-y border-gray-100 dark:border-gray-800/60">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               className="text-center mb-12"
@@ -198,10 +205,10 @@ const ProcessPage = () => {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
                 Why Our <span className="gradient-text">Process Works</span>
               </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
                 Our structured approach has been refined through years of experience and hundreds of successful projects.
               </p>
             </motion.div>
@@ -215,13 +222,13 @@ const ProcessPage = () => {
             >
               {benefits.map((benefit, index) => (
                 <motion.div key={benefit.title} variants={itemVariants}>
-                  <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 text-center">
+                  <Card className="h-full border border-gray-100 dark:border-gray-800/80 bg-white/70 dark:bg-gray-900/60 glass-card transition-all duration-300 text-center">
                     <CardContent className="p-6">
                       <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-green-500 to-yellow-400 rounded-full flex items-center justify-center">
                         <benefit.icon className="text-white" size={28} />
                       </div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-3">{benefit.title}</h3>
-                      <p className="text-gray-600 leading-relaxed">{benefit.description}</p>
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{benefit.title}</h3>
+                      <p className="text-gray-650 dark:text-gray-400 leading-relaxed">{benefit.description}</p>
                     </CardContent>
                   </Card>
                 </motion.div>
@@ -231,7 +238,7 @@ const ProcessPage = () => {
         </section>
 
         {/* Process Steps */}
-        <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50">
+        <section className="py-20 bg-gray-50/50 dark:bg-gray-950/20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               className="text-center mb-16"
@@ -240,10 +247,10 @@ const ProcessPage = () => {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
                 Our 6-Step <span className="gradient-text">Development Process</span>
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-lg text-gray-650 dark:text-gray-400 max-w-3xl mx-auto">
                 From initial consultation to ongoing support, we guide you through every step 
                 of your digital transformation journey.
               </p>
@@ -263,30 +270,30 @@ const ProcessPage = () => {
                 >
                   {/* Content */}
                   <div className="flex-1 lg:max-w-2xl">
-                    <Card className="border-0 shadow-xl hover:shadow-2xl transition-all duration-300">
+                    <Card className="border border-gray-150 dark:border-gray-800 bg-white dark:bg-gray-900/65 glass-card shadow-xl hover:shadow-2xl transition-all duration-300">
                       <CardContent className="p-8">
                         <div className="flex items-center gap-4 mb-6">
                           <div className={`w-16 h-16 bg-gradient-to-r ${step.color} rounded-full flex items-center justify-center`}>
                             <step.icon className="text-white" size={28} />
                           </div>
                           <div>
-                            <span className="text-sm font-semibold text-gray-500">Step {step.number}</span>
-                            <h3 className="text-2xl font-bold text-gray-900">{step.title}</h3>
+                            <span className="text-sm font-semibold text-gray-500 dark:text-gray-400">Step {step.number}</span>
+                            <h3 className="text-2xl font-bold text-gray-900 dark:text-white">{step.title}</h3>
                           </div>
                         </div>
                         
-                        <p className="text-gray-600 mb-6 leading-relaxed text-lg">
+                        <p className="text-gray-650 dark:text-gray-400 mb-6 leading-relaxed text-lg">
                           {step.description}
                         </p>
                         
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                           <div>
-                            <h4 className="font-semibold text-gray-900 mb-3">Key Activities</h4>
+                            <h4 className="font-semibold text-gray-900 dark:text-white mb-3">Key Activities</h4>
                             <div className="space-y-2">
                               {step.details.map((detail, idx) => (
                                 <div key={idx} className="flex items-start gap-2">
                                   <CheckCircle size={16} className="text-green-500 flex-shrink-0 mt-0.5" />
-                                  <span className="text-sm text-gray-600">{detail}</span>
+                                  <span className="text-sm text-gray-600 dark:text-gray-400">{detail}</span>
                                 </div>
                               ))}
                             </div>
@@ -294,15 +301,15 @@ const ProcessPage = () => {
                           
                           <div>
                             <div className="mb-4">
-                              <h4 className="font-semibold text-gray-900 mb-2">Duration</h4>
-                              <p className="text-green-600 font-medium">{step.duration}</p>
+                              <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Duration</h4>
+                              <p className="text-green-600 dark:text-green-400 font-medium">{step.duration}</p>
                             </div>
                             
                             <div>
-                              <h4 className="font-semibold text-gray-900 mb-2">Deliverables</h4>
+                              <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Deliverables</h4>
                               <div className="space-y-1">
                                 {step.deliverables.map((deliverable, idx) => (
-                                  <div key={idx} className="text-sm text-gray-600">
+                                  <div key={idx} className="text-sm text-gray-600 dark:text-gray-400">
                                     • {deliverable}
                                   </div>
                                 ))}
@@ -317,8 +324,8 @@ const ProcessPage = () => {
                   {/* Step Number Visual */}
                   <div className="flex-shrink-0">
                     <div className="relative">
-                      <div className="w-24 h-24 bg-white border-4 border-green-400 rounded-full shadow-lg flex items-center justify-center">
-                        <span className="text-2xl font-bold text-green-600">{step.number}</span>
+                      <div className="w-24 h-24 bg-white dark:bg-gray-900 border-4 border-green-400 rounded-full shadow-lg flex items-center justify-center">
+                        <span className="text-2xl font-bold text-green-600 dark:text-green-455">{step.number}</span>
                       </div>
                       <div className="absolute -top-2 -left-2 w-28 h-28 bg-green-400 rounded-full opacity-20 animate-ping"></div>
                     </div>
@@ -330,7 +337,7 @@ const ProcessPage = () => {
         </section>
 
         {/* Timeline Overview */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-white dark:bg-gray-900/20 border-t border-gray-100 dark:border-gray-800/60">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               className="text-center mb-12"
@@ -339,16 +346,16 @@ const ProcessPage = () => {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
                 Project <span className="gradient-text">Timeline</span>
               </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              <p className="text-lg text-gray-650 dark:text-gray-400 max-w-2xl mx-auto">
                 Typical project timeline from start to finish, though actual duration may vary based on project complexity.
               </p>
             </motion.div>
 
             <motion.div
-              className="bg-gradient-to-r from-green-50 to-yellow-50 rounded-2xl p-8"
+              className="bg-gradient-to-r from-green-50/50 to-yellow-50/50 dark:from-green-950/20 dark:to-yellow-950/10 rounded-2xl p-8 border border-green-100/30 dark:border-green-900/20 shadow-md"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
@@ -360,17 +367,17 @@ const ProcessPage = () => {
                     <div className={`w-12 h-12 bg-gradient-to-r ${step.color} rounded-full flex items-center justify-center mx-auto mb-3`}>
                       <step.icon className="text-white" size={20} />
                     </div>
-                    <h4 className="font-semibold text-gray-900 mb-1 text-sm">{step.title}</h4>
-                    <p className="text-xs text-gray-600">{step.duration}</p>
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-1 text-sm">{step.title}</h4>
+                    <p className="text-xs text-gray-605 dark:text-gray-400">{step.duration}</p>
                   </div>
                 ))}
               </div>
               
               <div className="mt-8 text-center">
-                <p className="text-gray-600 mb-4">
+                <p className="text-gray-650 dark:text-gray-400 mb-4">
                   <strong>Total Project Duration:</strong> Typically 3-6 months for most projects
                 </p>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-gray-500 dark:text-gray-450">
                   Timeline may vary based on project scope, complexity, and client requirements
                 </p>
               </div>
@@ -379,23 +386,23 @@ const ProcessPage = () => {
         </section>
 
         {/* CTA */}
-        <section className="py-16 bg-gradient-to-r from-gray-900 to-gray-800">
-          <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+        <section className="py-16 bg-gradient-to-br from-gray-900 via-slate-950 to-black relative overflow-hidden border-t border-gray-800">
+          <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-4xl font-bold text-white mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
                 Ready to Start Your Project?
               </h2>
-              <p className="text-xl text-gray-300 mb-8">
+              <p className="text-lg md:text-xl text-gray-405 mb-8 max-w-2xl mx-auto leading-relaxed">
                 Let's discuss how our proven process can help bring your vision to life. 
                 Our team is ready to guide you through every step of your digital transformation journey.
               </p>
               <motion.button
-                className="gradient-bg text-white px-8 py-4 rounded-lg font-semibold hover:opacity-90 transition-opacity text-lg"
+                className="gradient-bg text-white px-8 py-4 rounded-lg font-semibold hover:opacity-90 transition-opacity text-lg shadow-lg shadow-green-500/25"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >

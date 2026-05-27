@@ -250,33 +250,40 @@ const ProjectsPage = () => {
       <Star
         key={index}
         size={14}
-        className={`${index < Math.floor(rating) ? 'text-yellow-400 fill-current' : 'text-gray-300'}`}
+        className={`${index < Math.floor(rating) ? 'text-yellow-400 fill-current' : 'text-gray-300 dark:text-gray-650'}`}
       />
     ));
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#0a0f1e] text-gray-900 dark:text-white transition-colors duration-300">
       <Header />
       
       <div className="pt-20 pb-16">
         {/* Hero Section */}
-        <section className="py-16 bg-gradient-to-br from-green-500 via-green-600 to-yellow-400">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="relative py-24 gradient-grid-bg overflow-hidden flex items-center">
+          {/* Background decorative elements */}
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-green-500/10 dark:bg-green-500/15 rounded-full blur-3xl pointer-events-none animate-blob" />
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-yellow-500/10 dark:bg-yellow-500/15 rounded-full blur-3xl pointer-events-none animate-blob animation-delay-2000" />
+          
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
             <motion.div
-              className="text-center text-white"
+              className="text-center"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                Our <span className="block">Projects</span>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 dark:bg-green-500/20 border border-green-500/20 text-green-600 dark:text-green-400 text-sm font-semibold mb-6">
+                <Calendar size={14} /> Our Portfolio
+              </div>
+              <h1 className="hero-h1 font-bold mb-6 text-gray-900 dark:text-white">
+                Our <span className="gradient-text">Projects</span>
               </h1>
-              <p className="text-xl md:text-2xl mb-8 text-green-100 max-w-3xl mx-auto">
+              <p className="text-lg md:text-xl mb-8 text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
                 Explore our portfolio of successful projects across various industries, 
                 showcasing our expertise in delivering innovative digital solutions.
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-12">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mt-12 bg-white/50 dark:bg-gray-900/40 backdrop-blur-md rounded-2xl p-6 border border-gray-150 dark:border-gray-800">
                 {[
                   { number: '50+', label: 'Projects Completed' },
                   { number: '15+', label: 'Industries Served' },
@@ -284,8 +291,8 @@ const ProjectsPage = () => {
                   { number: '4.8★', label: 'Average Rating' }
                 ].map((stat, index) => (
                   <div key={stat.label} className="text-center">
-                    <div className="text-3xl font-bold mb-2">{stat.number}</div>
-                    <div className="text-green-100">{stat.label}</div>
+                    <div className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-1">{stat.number}</div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400 font-medium">{stat.label}</div>
                   </div>
                 ))}
               </div>
@@ -294,7 +301,7 @@ const ProjectsPage = () => {
         </section>
 
         {/* Featured Projects */}
-        <section className="py-20 bg-white">
+        <section className="py-20 bg-white dark:bg-gray-900/20 border-y border-gray-100 dark:border-gray-800/60">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               className="text-center mb-16"
@@ -303,10 +310,10 @@ const ProjectsPage = () => {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
                 Featured <span className="gradient-text">Projects</span>
               </h2>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
                 Highlighting our most impactful and innovative projects that have 
                 transformed businesses and delivered exceptional results.
               </p>
@@ -321,7 +328,7 @@ const ProjectsPage = () => {
             >
               {featuredProjects.slice(0, 4).map((project) => (
                 <motion.div key={project.id} variants={itemVariants}>
-                  <Card className="h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group overflow-hidden">
+                  <Card className="h-full border border-gray-100 dark:border-gray-800/80 bg-white/70 dark:bg-gray-900/60 glass-card transition-all duration-300 group overflow-hidden">
                     <div className="relative">
                       <img
                         src={project.image}
@@ -332,64 +339,64 @@ const ProjectsPage = () => {
                       <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <a
                           href={project.liveUrl}
-                          className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-green-500 hover:text-white transition-all duration-300"
+                          className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-green-500 hover:text-white transition-all duration-300 text-gray-900"
                         >
                           <ExternalLink size={16} />
                         </a>
                         <a
                           href={project.githubUrl}
-                          className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-gray-800 hover:text-white transition-all duration-300"
+                          className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-gray-800 hover:text-white transition-all duration-300 text-gray-900"
                         >
                           <Github size={16} />
                         </a>
                       </div>
                       <div className="absolute top-4 left-4">
-                        <Badge className="bg-green-500 text-white">Featured</Badge>
+                        <Badge className="bg-green-500 text-white border-0 shadow-md">Featured</Badge>
                       </div>
                     </div>
 
                     <CardContent className="p-6">
                       <div className="flex items-center justify-between mb-2">
-                        <Badge variant="outline">{project.category}</Badge>
+                        <Badge variant="outline" className="dark:border-gray-700 dark:text-gray-300">{project.category}</Badge>
                         <div className="flex items-center">
                           {renderStars(project.rating)}
-                          <span className="ml-1 text-sm text-gray-600">({project.rating})</span>
+                          <span className="ml-1 text-sm text-gray-600 dark:text-gray-400">({project.rating})</span>
                         </div>
                       </div>
 
-                      <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-green-600 transition-colors">
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">
                         {project.title}
                       </h3>
 
-                      <p className="text-gray-600 mb-4 leading-relaxed">{project.description}</p>
+                      <p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">{project.description}</p>
 
-                      <div className="grid grid-cols-2 gap-4 text-sm text-gray-500 mb-4">
+                      <div className="grid grid-cols-2 gap-4 text-sm text-gray-500 dark:text-gray-400 mb-4">
                         <div className="flex items-center">
-                          <Calendar size={14} className="mr-2" />
+                          <Calendar size={14} className="mr-2 text-green-550" />
                           {project.duration}
                         </div>
                         <div className="flex items-center">
-                          <Users size={14} className="mr-2" />
+                          <Users size={14} className="mr-2 text-green-550" />
                           {project.teamSize}
                         </div>
                       </div>
 
                       <div className="flex flex-wrap gap-2 mb-4">
                         {project.technologies.slice(0, 4).map((tech) => (
-                          <Badge key={tech} variant="secondary" className="text-xs">
+                          <Badge key={tech} variant="secondary" className="text-xs dark:bg-gray-805 dark:text-gray-300 border border-transparent dark:border-gray-700/30">
                             {tech}
                           </Badge>
                         ))}
                         {project.technologies.length > 4 && (
-                          <Badge variant="secondary" className="text-xs">
+                          <Badge variant="secondary" className="text-xs dark:bg-gray-805 dark:text-gray-300 border border-transparent dark:border-gray-700/30">
                             +{project.technologies.length - 4} more
                           </Badge>
                         )}
                       </div>
 
                       <div className="flex items-center justify-between">
-                        <span className="text-sm text-gray-600">Client: {project.client}</span>
-                        <Badge className="bg-green-100 text-green-800">{project.status}</Badge>
+                        <span className="text-sm text-gray-650 dark:text-gray-400">Client: {project.client}</span>
+                        <Badge className="bg-green-100 text-green-800 dark:bg-green-950/50 dark:text-green-400 border border-green-200/20 dark:border-green-900/30">{project.status}</Badge>
                       </div>
                     </CardContent>
                   </Card>
@@ -400,7 +407,7 @@ const ProjectsPage = () => {
         </section>
 
         {/* All Projects */}
-        <section className="py-20 bg-gray-50">
+        <section className="py-20 bg-gray-50/50 dark:bg-[#0a0f1e]/40 border-t border-gray-100 dark:border-gray-800/60">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               className="mb-12"
@@ -409,7 +416,7 @@ const ProjectsPage = () => {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-4xl font-bold text-gray-900 mb-8 text-center">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-8 text-center">
                 All <span className="gradient-text">Projects</span>
               </h2>
 
@@ -422,8 +429,8 @@ const ProjectsPage = () => {
                     onClick={() => setActiveFilter(filter)}
                     className={`px-6 py-2 rounded-full transition-all duration-300 ${
                       activeFilter === filter 
-                        ? 'gradient-bg text-white border-0' 
-                        : 'hover:border-green-500 hover:text-green-600'
+                        ? 'gradient-bg text-white border-0 shadow-lg shadow-green-500/25' 
+                        : 'bg-white dark:bg-gray-900 hover:border-green-500 hover:text-green-600 dark:hover:text-green-400 dark:text-gray-300 border border-gray-200 dark:border-gray-800'
                     }`}
                   >
                     <Filter size={16} className="mr-2" />
@@ -432,7 +439,7 @@ const ProjectsPage = () => {
                 ))}
               </div>
 
-              <div className="text-center text-sm text-gray-600 mb-8">
+              <div className="text-center text-sm text-gray-600 dark:text-gray-400 mb-8">
                 Showing {filteredProjects.length} of {projects.length} projects
               </div>
             </motion.div>
@@ -447,7 +454,7 @@ const ProjectsPage = () => {
             >
               {filteredProjects.map((project) => (
                 <motion.div key={project.id} variants={itemVariants}>
-                  <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 group overflow-hidden">
+                  <Card className="h-full border border-gray-100 dark:border-gray-800/80 bg-white/70 dark:bg-gray-900/60 glass-card transition-all duration-300 group overflow-hidden">
                     <div className="relative">
                       <img
                         src={project.image}
@@ -458,66 +465,66 @@ const ProjectsPage = () => {
                       <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <a
                           href={project.liveUrl}
-                          className="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:bg-green-500 hover:text-white transition-all duration-300"
+                          className="w-8 h-8 bg-white text-gray-900 rounded-full flex items-center justify-center hover:bg-green-500 hover:text-white transition-all duration-300"
                         >
                           <ExternalLink size={14} />
                         </a>
                         <a
                           href={project.githubUrl}
-                          className="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:bg-gray-800 hover:text-white transition-all duration-300"
+                          className="w-8 h-8 bg-white text-gray-900 rounded-full flex items-center justify-center hover:bg-gray-800 hover:text-white transition-all duration-300"
                         >
                           <Github size={14} />
                         </a>
                       </div>
                       <div className="absolute top-4 left-4">
-                        <Badge variant="outline" className="bg-white/90">{project.category}</Badge>
+                        <Badge variant="outline" className="bg-white/90 dark:bg-gray-900/90 dark:text-white dark:border-gray-700">{project.category}</Badge>
                       </div>
                     </div>
 
                     <CardContent className="p-6">
                       <div className="flex items-center justify-between mb-2">
-                        <span className="text-sm text-gray-500">{project.year}</span>
+                        <span className="text-sm text-gray-500 dark:text-gray-400">{project.year}</span>
                         <div className="flex items-center">
                           {renderStars(project.rating)}
-                          <span className="ml-1 text-sm text-gray-600">({project.rating})</span>
+                          <span className="ml-1 text-sm text-gray-650 dark:text-gray-400">({project.rating})</span>
                         </div>
                       </div>
 
-                      <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-green-600 transition-colors">
+                      <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">
                         {project.title}
                       </h3>
 
-                      <p className="text-gray-600 mb-4 text-sm leading-relaxed line-clamp-3">
+                      <p className="text-gray-600 dark:text-gray-400 mb-4 text-sm leading-relaxed line-clamp-3">
                         {project.description}
                       </p>
 
-                      <div className="grid grid-cols-2 gap-2 text-xs text-gray-500 mb-4">
+                      <div className="grid grid-cols-2 gap-2 text-xs text-gray-500 dark:text-gray-400 mb-4">
                         <div className="flex items-center">
-                          <Calendar size={12} className="mr-1" />
+                          <Calendar size={12} className="mr-1 text-green-550" />
                           {project.duration}
                         </div>
                         <div className="flex items-center">
-                          <Users size={12} className="mr-1" />
+                          <Users size={12} className="mr-1 text-green-550" />
                           {project.teamSize}
                         </div>
                       </div>
 
                       <div className="flex flex-wrap gap-1 mb-4">
                         {project.technologies.slice(0, 3).map((tech) => (
-                          <Badge key={tech} variant="secondary" className="text-xs">
+                          <Badge key={tech} variant="secondary" className="text-xs dark:bg-gray-805 dark:text-gray-300 border border-transparent dark:border-gray-700/30">
                             {tech}
                           </Badge>
                         ))}
                         {project.technologies.length > 3 && (
-                          <Badge variant="secondary" className="text-xs">
+                          <Badge variant="secondary" className="text-xs dark:bg-gray-805 dark:text-gray-300 border border-transparent dark:border-gray-700/30">
                             +{project.technologies.length - 3}
                           </Badge>
                         )}
                       </div>
 
                       <div className="flex items-center justify-between">
-                        <Badge className="bg-green-100 text-green-800 text-xs">{project.status}</Badge>
-                        <Button size="sm" variant="outline" className="text-xs">
+                        <Badge className="bg-green-100 text-green-800 dark:bg-green-950/50 dark:text-green-400 border border-green-200/20 dark:border-green-900/30 text-xs">{project.status}</Badge>
+                        <Button size="sm" variant="outline" className="text-xs dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800">
                           View Details
                         </Button>
                       </div>
@@ -535,8 +542,8 @@ const ProjectsPage = () => {
                 transition={{ duration: 0.6 }}
               >
                 <div className="text-6xl mb-4">🔍</div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">No projects found</h3>
-                <p className="text-gray-600 mb-6">
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">No projects found</h3>
+                <p className="text-gray-600 dark:text-gray-400 mb-6">
                   Try selecting a different category to explore our work.
                 </p>
                 <Button onClick={() => setActiveFilter('All')}>
@@ -548,26 +555,26 @@ const ProjectsPage = () => {
         </section>
 
         {/* CTA */}
-        <section className="py-16 bg-gradient-to-r from-gray-900 to-gray-800">
-          <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+        <section className="py-16 bg-gradient-to-br from-gray-900 via-slate-950 to-black relative overflow-hidden border-t border-gray-800">
+          <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-4xl font-bold text-white mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
                 Ready to Start Your Next Project?
               </h2>
-              <p className="text-xl text-gray-300 mb-8">
+              <p className="text-lg md:text-xl text-gray-400 mb-8 max-w-2xl mx-auto leading-relaxed">
                 Let's discuss your requirements and create a solution that drives your business forward. 
                 Our team is ready to turn your vision into reality.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" className="gradient-bg text-white hover:opacity-90 text-lg px-8 py-4">
+                <Button size="lg" className="gradient-bg text-white hover:opacity-90 text-lg px-8 py-4 shadow-lg shadow-green-500/25 border-0 font-semibold">
                   Start Your Project
                 </Button>
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 text-lg px-8 py-4">
+                <Button size="lg" variant="outline" className="border-white dark:border-gray-700 text-white hover:bg-white/10 text-lg px-8 py-4">
                   View Case Studies
                 </Button>
               </div>

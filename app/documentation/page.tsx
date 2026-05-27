@@ -65,6 +65,7 @@ export default function DocumentationPage() {
           </motion.div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
