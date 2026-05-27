@@ -189,7 +189,7 @@ const LMSPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-slate-50 dark:bg-gray-950">
       <Header />
       
       <div className="pt-20 pb-16">
@@ -224,7 +224,7 @@ const LMSPage = () => {
         </section>
 
         {/* Stats Section */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-white dark:bg-[#0a0f1e]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               className="grid grid-cols-1 md:grid-cols-4 gap-8"
@@ -238,8 +238,8 @@ const LMSPage = () => {
                   <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-green-500 to-yellow-400 rounded-full flex items-center justify-center">
                     <stat.icon className="text-white" size={28} />
                   </div>
-                  <div className="text-3xl font-bold text-gray-900 mb-2">{stat.number}</div>
-                  <div className="text-gray-600">{stat.label}</div>
+                  <div className="text-3xl font-bold text-gray-900 dark:text-white mb-2">{stat.number}</div>
+                  <div className="text-gray-655 dark:text-gray-400 font-semibold">{stat.label}</div>
                 </motion.div>
               ))}
             </motion.div>
@@ -247,7 +247,7 @@ const LMSPage = () => {
         </section>
 
         {/* Featured Courses */}
-        <section className="py-16 bg-gray-50">
+        <section className="py-16 bg-gray-50 dark:bg-gray-900/50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               className="text-center mb-12"
@@ -256,10 +256,10 @@ const LMSPage = () => {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
                 Featured <span className="gradient-text">Courses</span>
               </h2>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
                 Start with our most popular and highly-rated courses, carefully selected 
                 to provide maximum value for your learning journey.
               </p>
@@ -274,7 +274,7 @@ const LMSPage = () => {
             >
               {featuredCourses.map((course) => (
                 <motion.div key={course.id} variants={itemVariants}>
-                  <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 group overflow-hidden">
+                  <Card className="h-full bg-white dark:bg-gray-900 border border-gray-150 dark:border-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 group overflow-hidden">
                     <div className="relative">
                       <img
                         src={course.image}
@@ -294,15 +294,15 @@ const LMSPage = () => {
                         <Badge variant="outline">{course.category}</Badge>
                         <div className="flex items-center">
                           {renderStars(course.rating)}
-                          <span className="ml-1 text-sm text-gray-600">({course.rating})</span>
+                          <span className="ml-1 text-sm text-gray-600 dark:text-gray-400">({course.rating})</span>
                         </div>
                       </div>
 
-                      <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-green-600 transition-colors">
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">
                         {course.title}
                       </h3>
 
-                      <p className="text-gray-600 mb-4 line-clamp-2">{course.description}</p>
+                      <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">{course.description}</p>
 
                       <div className="flex items-center mb-4">
                         <img
@@ -310,10 +310,10 @@ const LMSPage = () => {
                           alt={course.instructor}
                           className="w-8 h-8 rounded-full mr-3"
                         />
-                        <span className="text-sm text-gray-600">{course.instructor}</span>
+                        <span className="text-sm text-gray-600 dark:text-gray-300">{course.instructor}</span>
                       </div>
 
-                      <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
+                      <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-4">
                         <span className="flex items-center">
                           <Users size={14} className="mr-1" />
                           {course.students.toLocaleString()} students
@@ -339,8 +339,8 @@ const LMSPage = () => {
 
                       <div className="flex items-center justify-between">
                         <div>
-                          <span className="text-2xl font-bold text-gray-900">{course.price}</span>
-                          <span className="text-sm text-gray-500 line-through ml-2">{course.originalPrice}</span>
+                          <span className="text-2xl font-bold text-gray-900 dark:text-white">{course.price}</span>
+                          <span className="text-sm text-gray-500 dark:text-gray-400 line-through ml-2">{course.originalPrice}</span>
                         </div>
                         <Button size="sm" className="gradient-bg text-white hover:opacity-90">
                           Enroll Now
@@ -356,7 +356,7 @@ const LMSPage = () => {
         </section>
 
         {/* All Courses */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-white dark:bg-[#0a0f1e]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               className="mb-12"
@@ -365,7 +365,7 @@ const LMSPage = () => {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-4xl font-bold text-gray-900 mb-8 text-center">
+              <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-8 text-center">
                 All <span className="gradient-text">Courses</span>
               </h2>
 
@@ -377,14 +377,14 @@ const LMSPage = () => {
                     <Input
                       type="text"
                       placeholder="Search courses..."
-                      className="pl-10"
+                      className="pl-10 bg-white dark:bg-gray-900 text-gray-900 dark:text-white border-gray-200 dark:border-gray-800"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                     />
                   </div>
                 </div>
                 
-                <div className="flex gap-2 overflow-x-auto">
+                <div className="flex gap-2 overflow-x-auto bg-transparent scrollbar-hide">
                   {categories.map((category) => (
                     <Button
                       key={category}
@@ -393,8 +393,8 @@ const LMSPage = () => {
                       className={`whitespace-nowrap ${
                         activeFilter === category 
                           ? 'gradient-bg text-white border-0' 
-                          : 'hover:border-green-500 hover:text-green-600'
-                      }`}
+                          : 'border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:border-green-500 dark:hover:border-green-400 hover:text-green-600 dark:hover:text-green-400'
+                       }`}
                     >
                       <Filter size={14} className="mr-2" />
                       {category}
@@ -403,7 +403,7 @@ const LMSPage = () => {
                 </div>
               </div>
 
-              <div className="text-sm text-gray-600 mb-8">
+              <div className="text-sm text-gray-600 dark:text-gray-400 mb-8">
                 Showing {filteredCourses.length} of {courses.length} courses
               </div>
             </motion.div>
@@ -418,7 +418,7 @@ const LMSPage = () => {
             >
               {filteredCourses.map((course) => (
                 <motion.div key={course.id} variants={itemVariants}>
-                  <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 group overflow-hidden">
+                  <Card className="h-full bg-white dark:bg-gray-900 border border-gray-150 dark:border-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 group overflow-hidden">
                     <div className="relative">
                       <img
                         src={course.image}
@@ -440,15 +440,15 @@ const LMSPage = () => {
                         <Badge variant="outline">{course.category}</Badge>
                         <div className="flex items-center">
                           {renderStars(course.rating)}
-                          <span className="ml-1 text-sm text-gray-600">({course.rating})</span>
+                          <span className="ml-1 text-sm text-gray-655 dark:text-gray-400">({course.rating})</span>
                         </div>
                       </div>
 
-                      <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-green-600 transition-colors">
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">
                         {course.title}
                       </h3>
 
-                      <p className="text-gray-600 mb-4 line-clamp-2">{course.description}</p>
+                      <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">{course.description}</p>
 
                       <div className="flex items-center mb-4">
                         <img
@@ -456,10 +456,10 @@ const LMSPage = () => {
                           alt={course.instructor}
                           className="w-8 h-8 rounded-full mr-3"
                         />
-                        <span className="text-sm text-gray-600">{course.instructor}</span>
+                        <span className="text-sm text-gray-600 dark:text-gray-300">{course.instructor}</span>
                       </div>
 
-                      <div className="grid grid-cols-2 gap-4 text-sm text-gray-500 mb-4">
+                      <div className="grid grid-cols-2 gap-4 text-sm text-gray-500 dark:text-gray-400 mb-4">
                         <span className="flex items-center">
                           <Users size={14} className="mr-1" />
                           {course.students.toLocaleString()} students
@@ -480,8 +480,8 @@ const LMSPage = () => {
 
                       <div className="flex items-center justify-between">
                         <div>
-                          <span className="text-2xl font-bold text-gray-900">{course.price}</span>
-                          <span className="text-sm text-gray-500 line-through ml-2">{course.originalPrice}</span>
+                          <span className="text-2xl font-bold text-gray-900 dark:text-white">{course.price}</span>
+                          <span className="text-sm text-gray-500 dark:text-gray-400 line-through ml-2">{course.originalPrice}</span>
                         </div>
                         <Button size="sm" className="gradient-bg text-white hover:opacity-90">
                           Enroll Now
@@ -501,8 +501,8 @@ const LMSPage = () => {
                 transition={{ duration: 0.6 }}
               >
                 <BookOpen size={64} className="mx-auto text-gray-400 mb-4" />
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">No courses found</h3>
-                <p className="text-gray-600 mb-6">
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">No courses found</h3>
+                <p className="text-gray-600 dark:text-gray-400 mb-6">
                   Try adjusting your search terms or filters to find the perfect course.
                 </p>
                 <Button onClick={() => { setActiveFilter('All'); setSearchQuery(''); }}>

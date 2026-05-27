@@ -253,19 +253,19 @@ export default function ServicesPage() {
               <Zap size={14} className="mr-1" /> End-to-End Technology Partner
             </span>
 
-            <h1 className="hero-h1 text-white mb-6">
+            <h1 className="hero-h1 text-gray-900 dark:text-white mb-6">
               Enterprise IT &{' '}
               <span className="gradient-text">AI Solutions</span>
             </h1>
 
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-10 leading-relaxed">
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-10 leading-relaxed">
               From idea to production in record time — GuideSoft delivers software development,
               AI/ML, UX design, mobile apps, LMS platforms, and cloud infrastructure for forward-thinking businesses.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/booking">
-                <Button size="lg" className="btn-glow text-white px-8 py-4 text-base font-bold rounded-xl">
+                <Button size="lg" className="btn-glow text-white px-8 py-4 text-base font-bold rounded-xl animate-pulse-green">
                   Book Free Consultation <ArrowRight size={16} className="ml-2" />
                 </Button>
               </Link>
@@ -277,9 +277,9 @@ export default function ServicesPage() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-green-500/40 text-white hover:bg-green-500/10 px-8 py-4 text-base rounded-xl"
+                  className="border-green-600 text-green-600 hover:text-green-700 dark:border-green-500/40 dark:text-white dark:hover:bg-green-500/10 px-8 py-4 text-base rounded-xl"
                 >
-                  <MessageCircle size={16} className="mr-2 text-green-400" /> WhatsApp Us
+                  <MessageCircle size={16} className="mr-2 text-green-600 dark:text-green-400" /> WhatsApp Us
                 </Button>
               </a>
             </div>
@@ -295,11 +295,11 @@ export default function ServicesPage() {
             {stats.map(({ value, label, icon: Icon }) => (
               <div
                 key={label}
-                className="glass-morphism rounded-2xl p-5 text-center"
+                className="glass-card rounded-2xl p-5 text-center"
               >
-                <Icon size={20} className="text-green-400 mx-auto mb-2" />
-                <div className="text-3xl font-black text-white">{value}</div>
-                <div className="text-sm text-gray-400 mt-1">{label}</div>
+                <Icon size={20} className="text-green-600 dark:text-green-400 mx-auto mb-2" />
+                <div className="text-3xl font-black text-gray-900 dark:text-white">{value}</div>
+                <div className="text-sm text-gray-650 dark:text-gray-400 mt-1">{label}</div>
               </div>
             ))}
           </motion.div>
@@ -653,11 +653,11 @@ export default function ServicesPage() {
             whileInView="visible"
             viewport={{ once: true }}
           >
-            <h2 className="section-h2 text-white mb-6">
+            <h2 className="section-h2 text-gray-900 dark:text-white mb-6">
               Ready to Build Something{' '}
               <span className="gradient-text">Extraordinary?</span>
             </h2>
-            <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-10">
+            <p className="text-gray-600 dark:text-gray-300 text-lg max-w-2xl mx-auto mb-10">
               Talk to our experts today. Get a free technical consultation, project scoping, and a detailed proposal — no commitment required.
             </p>
 
@@ -681,7 +681,7 @@ export default function ServicesPage() {
               </a>
             </div>
 
-            <p className="text-gray-400 text-sm mt-8">
+            <p className="text-gray-600 dark:text-gray-400 text-sm mt-8">
               📞 +91 8884162999 &nbsp;|&nbsp; +91 8500647979 &nbsp;|&nbsp;
               ✉️ info@guideitsol.com &nbsp;|&nbsp; 📍 Guntur & Bangalore, India
             </p>

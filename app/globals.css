@@ -71,6 +71,11 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 142 70% 45%;
+    --brand-text: #f8fafc;
+    --brand-text-muted: #94a3b8;
+    --brand-background: #0a0f1e;
+    --brand-card-bg: #0f172a;
+    --brand-border: #1e293b;
   }
 }
 
@@ -78,6 +83,7 @@
 @layer base {
   * {
     @apply border-border;
+    transition: background-color 300ms ease, border-color 300ms ease, color 300ms ease, box-shadow 300ms ease;
   }
   html {
     @apply scroll-smooth;

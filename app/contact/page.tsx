@@ -146,7 +146,7 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-slate-50 dark:bg-gray-950">
       <Header />
       
       <div className="pt-20 pb-16">
@@ -171,7 +171,7 @@ const ContactPage = () => {
         </section>
 
         {/* Contact Info Cards */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-white dark:bg-[#0a0f1e]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
@@ -182,18 +182,18 @@ const ContactPage = () => {
             >
               {contactInfo.map((info, index) => (
                 <motion.div key={info.title} variants={itemVariants as any}>
-                  <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 text-center group">
+                  <Card className="h-full bg-white dark:bg-gray-900 border border-gray-150 dark:border-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 text-center group">
                     <CardContent className="p-6">
                       <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-green-500 to-yellow-400 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                         <info.icon className="text-white" size={28} />
                       </div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-3">{info.title}</h3>
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{info.title}</h3>
                       <div className="space-y-1 mb-3">
                         {info.details.map((detail, idx) => (
-                          <p key={idx} className="text-gray-700 font-medium">{detail}</p>
+                          <p key={idx} className="text-gray-700 dark:text-gray-300 font-medium">{detail}</p>
                         ))}
                       </div>
-                      <p className="text-gray-600 text-sm">{info.description}</p>
+                      <p className="text-gray-600 dark:text-gray-400 text-sm">{info.description}</p>
                     </CardContent>
                   </Card>
                 </motion.div>
@@ -203,7 +203,7 @@ const ContactPage = () => {
         </section>
 
         {/* Contact Form & Map */}
-        <section className="py-20 bg-gray-50">
+        <section className="py-20 bg-gray-50 dark:bg-gray-900/50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               {/* Contact Form */}
@@ -213,13 +213,13 @@ const ContactPage = () => {
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
               >
-                <Card className="border-0 shadow-xl">
+                <Card className="bg-white dark:bg-gray-900 border border-gray-150 dark:border-gray-800 shadow-xl">
                   <CardHeader>
-                    <CardTitle className="text-2xl font-bold text-gray-900 flex items-center">
+                    <CardTitle className="text-2xl font-bold text-gray-900 dark:text-white flex items-center">
                       <MessageSquare className="mr-3" size={28} />
                       Send us a Message
                     </CardTitle>
-                    <p className="text-gray-600">
+                    <p className="text-gray-600 dark:text-gray-400">
                       Fill out the form below and we'll get back to you within 24 hours.
                     </p>
                   </CardHeader>
@@ -227,7 +227,7 @@ const ContactPage = () => {
                     <form onSubmit={handleSubmit} className="space-y-6">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                             Full Name *
                           </label>
                           <div className="relative">
@@ -245,7 +245,7 @@ const ContactPage = () => {
                         </div>
 
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                             Email Address *
                           </label>
                           <div className="relative">
@@ -263,7 +263,7 @@ const ContactPage = () => {
                         </div>
 
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                             Phone Number
                           </label>
                           <div className="relative">
@@ -280,7 +280,7 @@ const ContactPage = () => {
                         </div>
 
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                             Company
                           </label>
                           <div className="relative">
@@ -299,12 +299,12 @@ const ContactPage = () => {
 
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                             Service Interested In
                           </label>
                           <select
                             name="service"
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                            className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
                             value={formData.service}
                             onChange={handleInputChange}
                           >
@@ -316,7 +316,7 @@ const ContactPage = () => {
                         </div>
 
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                             Subject *
                           </label>
                           <Input
@@ -331,7 +331,7 @@ const ContactPage = () => {
                       </div>
 
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                           Message *
                         </label>
                         <Textarea
@@ -366,7 +366,7 @@ const ContactPage = () => {
                 viewport={{ once: true }}
               >
                 {/* Map */}
-                <Card className="border-0 shadow-xl overflow-hidden">
+                <Card className="bg-white dark:bg-gray-900 border border-gray-150 dark:border-gray-800 shadow-xl overflow-hidden">
                   <div className="h-64 bg-gray-200 relative">
                     <iframe
                       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61440.24!2d80.4036!3d16.3067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a4a748039bdc2c3%3A0x1002ada0c6c3f499!2sGuntur%2C%20Andhra%20Pradesh%2C%20India!5e0!3m2!1sen!2sin!4v1716000000000!5m2!1sen!2sin"
@@ -380,8 +380,8 @@ const ContactPage = () => {
                     ></iframe>
                   </div>
                   <CardContent className="p-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">Visit Our Office</h3>
-                    <p className="text-gray-600 mb-4">
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Visit Our Office</h3>
+                    <p className="text-gray-650 dark:text-gray-400 mb-4">
                       We'd love to meet you in person. Schedule a visit to our office 
                       to discuss your project requirements face-to-face.
                     </p>
@@ -389,7 +389,7 @@ const ContactPage = () => {
                       href="https://maps.google.com/?q=Guntur,Andhra+Pradesh,India"
                       target="_blank" rel="noopener noreferrer"
                     >
-                      <Button variant="outline" className="w-full hover:border-green-400 hover:text-green-600">
+                      <Button variant="outline" className="w-full border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:border-green-400 hover:text-green-600 dark:hover:text-green-400">
                         <MapPin className="mr-2" size={16} />
                         Get Directions — Guntur Office
                       </Button>
@@ -398,12 +398,12 @@ const ContactPage = () => {
                 </Card>
 
                 {/* Social Media */}
-                <Card className="border-0 shadow-xl">
+                <Card className="bg-white dark:bg-gray-900 border border-gray-150 dark:border-gray-800 shadow-xl">
                   <CardHeader>
-                    <CardTitle className="text-xl font-bold text-gray-900">
+                    <CardTitle className="text-xl font-bold text-gray-900 dark:text-white">
                       Connect With Us
                     </CardTitle>
-                    <p className="text-gray-600">
+                    <p className="text-gray-600 dark:text-gray-400">
                       Follow us on social media for updates and insights.
                     </p>
                   </CardHeader>
@@ -413,7 +413,7 @@ const ContactPage = () => {
                         <a
                           key={social.name}
                           href={social.url}
-                          className={`flex items-center p-3 border rounded-lg hover:shadow-md transition-all duration-300 ${social.color}`}
+                          className={`flex items-center p-3 border border-gray-250 dark:border-gray-700 text-gray-750 dark:text-gray-300 bg-white dark:bg-gray-950/40 rounded-lg hover:shadow-md transition-all duration-300 ${social.color}`}
                         >
                           <social.icon size={20} className="mr-3" />
                           <span className="font-medium">{social.name}</span>
@@ -424,33 +424,33 @@ const ContactPage = () => {
                 </Card>
 
                 {/* Quick Contact */}
-                <Card className="border-0 shadow-xl bg-gradient-to-br from-green-50 to-yellow-50">
+                <Card className="border border-gray-150 dark:border-gray-800/80 shadow-xl bg-gradient-to-br from-green-50 to-yellow-50 dark:from-green-950/20 dark:to-yellow-950/10">
                   <CardContent className="p-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-4">
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
                       Need Immediate Assistance?
                     </h3>
-                    <p className="text-gray-600 mb-6">
+                    <p className="text-gray-650 dark:text-gray-400 mb-6">
                       For urgent matters or immediate support, don't hesitate to call us directly.
                     </p>
                     <div className="space-y-3">
                       <a
                         href="tel:+918884162999"
-                        className="flex items-center p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300"
+                        className="flex items-center p-3 bg-white dark:bg-gray-900 border border-gray-150 dark:border-gray-800 rounded-lg shadow-sm hover:shadow-md transition-all duration-300"
                       >
-                        <Phone className="mr-3 text-green-600" size={20} />
+                        <Phone className="mr-3 text-green-600 dark:text-green-400" size={20} />
                         <div>
-                          <p className="font-medium text-gray-900">+91 8884162999</p>
-                          <p className="text-sm text-gray-600">WhatsApp &amp; Calls</p>
+                          <p className="font-medium text-gray-900 dark:text-white">+91 8884162999</p>
+                          <p className="text-sm text-gray-600 dark:text-gray-400">WhatsApp &amp; Calls</p>
                         </div>
                       </a>
                       <a
                         href="mailto:praveenkumar.kanneganti@gmail.com"
-                        className="flex items-center p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300"
+                        className="flex items-center p-3 bg-white dark:bg-gray-900 border border-gray-150 dark:border-gray-800 rounded-lg shadow-sm hover:shadow-md transition-all duration-300"
                       >
-                        <Mail className="mr-3 text-green-600" size={20} />
+                        <Mail className="mr-3 text-green-600 dark:text-green-400" size={20} />
                         <div>
-                          <p className="font-medium text-gray-900">praveenkumar.kanneganti@gmail.com</p>
-                          <p className="text-sm text-gray-600">General Inquiries</p>
+                          <p className="font-medium text-gray-900 dark:text-white">praveenkumar.kanneganti@gmail.com</p>
+                          <p className="text-sm text-gray-650 dark:text-gray-400">General Inquiries</p>
                         </div>
                       </a>
                     </div>
@@ -462,7 +462,7 @@ const ContactPage = () => {
         </section>
 
         {/* FAQ Section */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-white dark:bg-[#0a0f1e]">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               className="text-center mb-12"
@@ -471,10 +471,10 @@ const ContactPage = () => {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
                 Frequently Asked <span className="gradient-text">Questions</span>
               </h2>
-              <p className="text-lg text-gray-600">
+              <p className="text-lg text-gray-600 dark:text-gray-400">
                 Quick answers to common questions about our services and process.
               </p>
             </motion.div>
@@ -505,10 +505,10 @@ const ContactPage = () => {
                 }
               ].map((faq, index) => (
                 <motion.div key={index} variants={itemVariants as any}>
-                  <Card className="border-0 shadow-lg">
+                  <Card className="bg-white dark:bg-gray-900 border border-gray-150 dark:border-gray-800 shadow-lg">
                     <CardContent className="p-6">
-                      <h3 className="text-lg font-bold text-gray-900 mb-3">{faq.question}</h3>
-                      <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
+                      <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3">{faq.question}</h3>
+                      <p className="text-gray-600 dark:text-gray-400 leading-relaxed">{faq.answer}</p>
                     </CardContent>
                   </Card>
                 </motion.div>

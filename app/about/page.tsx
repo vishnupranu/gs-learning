@@ -92,7 +92,7 @@ const AboutPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-slate-50 dark:bg-gray-950">
       <Header />
       
       <div className="pt-20 pb-16">
@@ -117,7 +117,7 @@ const AboutPage = () => {
         </section>
 
         {/* Company Story */}
-        <section className="py-20 bg-white">
+        <section className="py-20 bg-white dark:bg-[#0a0f1e]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <motion.div
@@ -126,20 +126,20 @@ const AboutPage = () => {
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
               >
-                <h2 className="text-4xl font-bold text-gray-900 mb-6">
+                <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">
                   Our <span className="gradient-text">Story</span>
                 </h2>
-                <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                <p className="text-lg text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
                   Founded in 2019 with a vision to democratize technology for businesses of all sizes, 
                   Guide Soft IT Solutions has grown from a small startup to a trusted technology partner 
                   for companies across the globe.
                 </p>
-                <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                <p className="text-lg text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
                   Our journey began when our founders recognized the gap between rapidly evolving 
                   technology and businesses' ability to leverage it effectively. We set out to bridge 
                   this gap by providing accessible, innovative, and results-driven IT solutions.
                 </p>
-                <p className="text-lg text-gray-600 leading-relaxed">
+                <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
                   Today, we're proud to have helped over 150 businesses transform their operations, 
                   reach new markets, and achieve unprecedented growth through technology.
                 </p>
@@ -157,9 +157,9 @@ const AboutPage = () => {
                   alt="Guide Soft Team"
                   className="rounded-2xl shadow-2xl"
                 />
-                <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-lg">
+                <div className="absolute -bottom-6 -left-6 bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg border border-gray-100 dark:border-gray-800">
                   <div className="text-3xl font-bold gradient-text">5+</div>
-                  <div className="text-gray-600">Years of Excellence</div>
+                  <div className="text-gray-655 dark:text-gray-400 font-semibold">Years of Excellence</div>
                 </div>
               </motion.div>
             </div>
@@ -167,7 +167,7 @@ const AboutPage = () => {
         </section>
 
         {/* Stats */}
-        <section className="py-16 bg-gray-50">
+        <section className="py-16 bg-gray-50 dark:bg-gray-900/50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               className="grid grid-cols-1 md:grid-cols-4 gap-8"
@@ -181,8 +181,8 @@ const AboutPage = () => {
                   <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-green-500 to-yellow-400 rounded-full flex items-center justify-center">
                     <stat.icon className="text-white" size={28} />
                   </div>
-                  <div className="text-3xl font-bold text-gray-900 mb-2">{stat.number}</div>
-                  <div className="text-gray-600">{stat.label}</div>
+                  <div className="text-3xl font-bold text-gray-900 dark:text-white mb-2">{stat.number}</div>
+                  <div className="text-gray-655 dark:text-gray-400 font-semibold">{stat.label}</div>
                 </motion.div>
               ))}
             </motion.div>
@@ -190,7 +190,7 @@ const AboutPage = () => {
         </section>
 
         {/* Values */}
-        <section className="py-20 bg-white">
+        <section className="py-20 bg-white dark:bg-[#0a0f1e]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               className="text-center mb-16"
@@ -199,10 +199,10 @@ const AboutPage = () => {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
                 Our Core <span className="gradient-text">Values</span>
               </h2>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
                 The principles that guide our work and define our commitment to excellence
               </p>
             </motion.div>
@@ -216,13 +216,13 @@ const AboutPage = () => {
             >
               {values.map((value, index) => (
                 <motion.div key={value.title} variants={itemVariants as any}>
-                  <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 group">
+                  <Card className="h-full bg-white dark:bg-gray-900 border border-gray-150 dark:border-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 group">
                     <CardContent className="p-6 text-center">
                       <div className={`w-16 h-16 bg-gradient-to-r ${value.color} rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}>
                         <value.icon className="text-white" size={28} />
                       </div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-3">{value.title}</h3>
-                      <p className="text-gray-600 leading-relaxed">{value.description}</p>
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{value.title}</h3>
+                      <p className="text-gray-600 dark:text-gray-400 leading-relaxed">{value.description}</p>
                     </CardContent>
                   </Card>
                 </motion.div>
@@ -232,7 +232,7 @@ const AboutPage = () => {
         </section>
 
         {/* Team */}
-        <section className="py-20 bg-gray-50">
+        <section className="py-20 bg-gray-50 dark:bg-gray-900/50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               className="text-center mb-16"
@@ -241,10 +241,10 @@ const AboutPage = () => {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
                 Meet Our <span className="gradient-text">Leadership Team</span>
               </h2>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
                 Experienced leaders driving innovation and excellence in everything we do
               </p>
             </motion.div>
@@ -258,7 +258,7 @@ const AboutPage = () => {
             >
               {team.map((member, index) => (
                 <motion.div key={member.name} variants={itemVariants as any}>
-                  <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 group overflow-hidden">
+                  <Card className="bg-white dark:bg-gray-900 border border-gray-150 dark:border-gray-850 shadow-lg hover:shadow-xl transition-all duration-300 group overflow-hidden">
                     <div className="relative">
                       <img
                         src={member.image}
@@ -268,9 +268,9 @@ const AboutPage = () => {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
                     <CardContent className="p-6">
-                      <h3 className="text-xl font-bold text-gray-900 mb-1">{member.name}</h3>
-                      <p className="text-green-600 font-medium mb-3">{member.position}</p>
-                      <p className="text-gray-600 text-sm leading-relaxed">{member.bio}</p>
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">{member.name}</h3>
+                      <p className="text-green-600 dark:text-green-400 font-medium mb-3">{member.position}</p>
+                      <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">{member.bio}</p>
                     </CardContent>
                   </Card>
                 </motion.div>
